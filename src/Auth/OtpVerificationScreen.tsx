@@ -98,7 +98,7 @@ const OtpVerificationScreen = ({ navigation, route }: any) => {
     setLoadingVerify(true);
     setTimeout(() => {
       setLoadingVerify(false);
-      navigation.navigate('Welcome', { mobile });
+      navigation.navigate('KYC1', { mobile });
     }, 2000);
   };
 
@@ -272,8 +272,8 @@ const styles = StyleSheet.create({
   },
 
   otpInput: {
-    width: width * 0.13,
-    height: width * 0.15,
+    width: width * 0.12,
+    height: width * 0.13,
     borderWidth: 2,
     borderColor: '#E0E0E0',
     borderRadius: 10,
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
 
   button: {
     backgroundColor: COLORS.primary,
-    width: '85%',
+    width: '100%',
     paddingVertical: 14,
     borderRadius: 12,
     alignItems: 'center',

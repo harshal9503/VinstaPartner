@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
-import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeContext } from '../../../theme/ThemeContext';
 
 export default function BookingsScreen() {
   const { colors } = useContext(ThemeContext);

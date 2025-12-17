@@ -3,11 +3,11 @@ import { Image, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { CurvedBottomBar } from 'react-native-curved-bottom-bar';
 import { ThemeContext } from '../theme/ThemeContext';
 
-import HomeScreen from '../screens/home/HomeScreen';
-import FoodScreen from '../screens/home/FoodScreen';
-import AddScreen from '../screens/home/AddScreen';
-import BookingsScreen from '../screens/home/BookingsScreen';
-import ProfileScreen from '../screens/home/ProfileScreen';
+import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
+import FoodScreen from '../screens/home/FoodScreen/FoodScreen';
+import AddScreen from '../screens/home/Add/AddScreen';
+import BookingsScreen from '../screens/home/Bookings/BookingsScreen';
+import ProfileScreen from '../screens/home/Profile/ProfileScreen';
 
 // PNG ICONS
 const icons = {

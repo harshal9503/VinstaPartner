@@ -9,57 +9,58 @@
 /* Begin PBXBuildFile section */
 		0C80B921A6F3F58F76C31292 /* libPods-VinstaPartner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-VinstaPartner.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		EFC00AD67C544E1D9F3517C3 /* Figtree-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2CF4864ADC04236B8123109 /* Figtree-Black.ttf */; };
-		769DA4B714014C52ADD031BF /* Figtree-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97982B0019D9456AB093F245 /* Figtree-BlackItalic.ttf */; };
-		B93B69742BB642EE835129E7 /* Figtree-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55784C0E7D824F28BCE9073A /* Figtree-Bold.ttf */; };
-		51A082CE9CD84E34B5A01F49 /* Figtree-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322BD9264A0E4206AA5EC411 /* Figtree-BoldItalic.ttf */; };
-		F185A1F102B94111AF45470C /* Figtree-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C828E0CF0EF43AF9AF84826 /* Figtree-ExtraBold.ttf */; };
-		6A4FE1CDF1B04DAEB312E89E /* Figtree-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9717CB0DC8148B09D19ECCA /* Figtree-ExtraBoldItalic.ttf */; };
-		F4EC30F9CE2D4B95A8EE0730 /* Figtree-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E86D8F6534FD413C8A6A8172 /* Figtree-Italic-VariableFont_wght.ttf */; };
-		39C31466ED0744B3BFBDCC6A /* Figtree-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 898F4241371246598829D570 /* Figtree-Italic.ttf */; };
-		EDE3B64A0F44470ABDD9BBA5 /* Figtree-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02ED6B630864409A95EC0163 /* Figtree-Light.ttf */; };
-		477777C3595B40FCB534DB31 /* Figtree-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63080363EC4B467E884444AE /* Figtree-LightItalic.ttf */; };
-		C40A85871D2A49B99DCBDA6F /* Figtree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE7876806A90452680FD7428 /* Figtree-Medium.ttf */; };
-		EFECB0F970D84235A125E205 /* Figtree-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3091F6A9F4B1450092097DCB /* Figtree-MediumItalic.ttf */; };
-		DCD3EF67C3A74568A278A984 /* Figtree-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7E6B8565E8B47DAA8AB5D3B /* Figtree-Regular.ttf */; };
-		3BA8DC7187B448329F3D3507 /* Figtree-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A2652467C7E483B96B8A9FB /* Figtree-SemiBold.ttf */; };
 		2B60162DF4224733B1B74E73 /* Figtree-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10EE22DFCA784EE9B77A7071 /* Figtree-SemiBoldItalic.ttf */; };
+		39C31466ED0744B3BFBDCC6A /* Figtree-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 898F4241371246598829D570 /* Figtree-Italic.ttf */; };
 		3B13836447714C64B65F10DD /* Figtree-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAC7EE80E07B43EC91A5B066 /* Figtree-VariableFont_wght.ttf */; };
+		3BA8DC7187B448329F3D3507 /* Figtree-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A2652467C7E483B96B8A9FB /* Figtree-SemiBold.ttf */; };
+		477777C3595B40FCB534DB31 /* Figtree-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63080363EC4B467E884444AE /* Figtree-LightItalic.ttf */; };
+		51A082CE9CD84E34B5A01F49 /* Figtree-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322BD9264A0E4206AA5EC411 /* Figtree-BoldItalic.ttf */; };
+		6A4FE1CDF1B04DAEB312E89E /* Figtree-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9717CB0DC8148B09D19ECCA /* Figtree-ExtraBoldItalic.ttf */; };
+		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		769DA4B714014C52ADD031BF /* Figtree-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97982B0019D9456AB093F245 /* Figtree-BlackItalic.ttf */; };
 		7AE78449AB7B4F988278F4B5 /* 1st.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D32A8979ED6478DA213B6EF /* 1st.png */; };
 		7E40A6D154B04A4C9461B7F6 /* 2nd.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6A7BDD941F48DBABB754EE /* 2nd.png */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B93B69742BB642EE835129E7 /* Figtree-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55784C0E7D824F28BCE9073A /* Figtree-Bold.ttf */; };
+		C40A85871D2A49B99DCBDA6F /* Figtree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE7876806A90452680FD7428 /* Figtree-Medium.ttf */; };
+		DCD3EF67C3A74568A278A984 /* Figtree-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7E6B8565E8B47DAA8AB5D3B /* Figtree-Regular.ttf */; };
+		E82C55E9E2C187D600CB5738 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		EDE3B64A0F44470ABDD9BBA5 /* Figtree-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02ED6B630864409A95EC0163 /* Figtree-Light.ttf */; };
+		EFC00AD67C544E1D9F3517C3 /* Figtree-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2CF4864ADC04236B8123109 /* Figtree-Black.ttf */; };
+		EFECB0F970D84235A125E205 /* Figtree-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3091F6A9F4B1450092097DCB /* Figtree-MediumItalic.ttf */; };
+		F185A1F102B94111AF45470C /* Figtree-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C828E0CF0EF43AF9AF84826 /* Figtree-ExtraBold.ttf */; };
+		F4EC30F9CE2D4B95A8EE0730 /* Figtree-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E86D8F6534FD413C8A6A8172 /* Figtree-Italic-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02ED6B630864409A95EC0163 /* Figtree-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Light.ttf"; path = "../src/assets/fonts/Figtree-Light.ttf"; sourceTree = "<group>"; };
+		10EE22DFCA784EE9B77A7071 /* Figtree-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Figtree-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* VinstaPartner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VinstaPartner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = VinstaPartner/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = VinstaPartner/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = VinstaPartner/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3091F6A9F4B1450092097DCB /* Figtree-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-MediumItalic.ttf"; path = "../src/assets/fonts/Figtree-MediumItalic.ttf"; sourceTree = "<group>"; };
+		322BD9264A0E4206AA5EC411 /* Figtree-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-BoldItalic.ttf"; path = "../src/assets/fonts/Figtree-BoldItalic.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-VinstaPartner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinstaPartner.debug.xcconfig"; path = "Target Support Files/Pods-VinstaPartner/Pods-VinstaPartner.debug.xcconfig"; sourceTree = "<group>"; };
+		55784C0E7D824F28BCE9073A /* Figtree-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Bold.ttf"; path = "../src/assets/fonts/Figtree-Bold.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-VinstaPartner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VinstaPartner.release.xcconfig"; path = "Target Support Files/Pods-VinstaPartner/Pods-VinstaPartner.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-VinstaPartner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VinstaPartner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63080363EC4B467E884444AE /* Figtree-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-LightItalic.ttf"; path = "../src/assets/fonts/Figtree-LightItalic.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = VinstaPartner/AppDelegate.swift; sourceTree = "<group>"; };
+		7A2652467C7E483B96B8A9FB /* Figtree-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-SemiBold.ttf"; path = "../src/assets/fonts/Figtree-SemiBold.ttf"; sourceTree = "<group>"; };
+		7C828E0CF0EF43AF9AF84826 /* Figtree-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-ExtraBold.ttf"; path = "../src/assets/fonts/Figtree-ExtraBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = VinstaPartner/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		898F4241371246598829D570 /* Figtree-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Italic.ttf"; path = "../src/assets/fonts/Figtree-Italic.ttf"; sourceTree = "<group>"; };
+		8D32A8979ED6478DA213B6EF /* 1st.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = 1st.png; path = ../src/assets/fonts/1st.png; sourceTree = "<group>"; };
+		97982B0019D9456AB093F245 /* Figtree-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-BlackItalic.ttf"; path = "../src/assets/fonts/Figtree-BlackItalic.ttf"; sourceTree = "<group>"; };
+		BE6A7BDD941F48DBABB754EE /* 2nd.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = 2nd.png; path = ../src/assets/fonts/2nd.png; sourceTree = "<group>"; };
+		BE7876806A90452680FD7428 /* Figtree-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Medium.ttf"; path = "../src/assets/fonts/Figtree-Medium.ttf"; sourceTree = "<group>"; };
+		C2CF4864ADC04236B8123109 /* Figtree-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Black.ttf"; path = "../src/assets/fonts/Figtree-Black.ttf"; sourceTree = "<group>"; };
+		E7E6B8565E8B47DAA8AB5D3B /* Figtree-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Regular.ttf"; path = "../src/assets/fonts/Figtree-Regular.ttf"; sourceTree = "<group>"; };
+		E86D8F6534FD413C8A6A8172 /* Figtree-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Italic-VariableFont_wght.ttf"; path = "../src/assets/fonts/Figtree-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		EAC7EE80E07B43EC91A5B066 /* Figtree-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-VariableFont_wght.ttf"; path = "../src/assets/fonts/Figtree-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		C2CF4864ADC04236B8123109 /* Figtree-Black.ttf */ = {isa = PBXFileReference; name = "Figtree-Black.ttf"; path = "../src/assets/fonts/Figtree-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		97982B0019D9456AB093F245 /* Figtree-BlackItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-BlackItalic.ttf"; path = "../src/assets/fonts/Figtree-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		55784C0E7D824F28BCE9073A /* Figtree-Bold.ttf */ = {isa = PBXFileReference; name = "Figtree-Bold.ttf"; path = "../src/assets/fonts/Figtree-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		322BD9264A0E4206AA5EC411 /* Figtree-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-BoldItalic.ttf"; path = "../src/assets/fonts/Figtree-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7C828E0CF0EF43AF9AF84826 /* Figtree-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Figtree-ExtraBold.ttf"; path = "../src/assets/fonts/Figtree-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F9717CB0DC8148B09D19ECCA /* Figtree-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Figtree-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E86D8F6534FD413C8A6A8172 /* Figtree-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Figtree-Italic-VariableFont_wght.ttf"; path = "../src/assets/fonts/Figtree-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		898F4241371246598829D570 /* Figtree-Italic.ttf */ = {isa = PBXFileReference; name = "Figtree-Italic.ttf"; path = "../src/assets/fonts/Figtree-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		02ED6B630864409A95EC0163 /* Figtree-Light.ttf */ = {isa = PBXFileReference; name = "Figtree-Light.ttf"; path = "../src/assets/fonts/Figtree-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		63080363EC4B467E884444AE /* Figtree-LightItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-LightItalic.ttf"; path = "../src/assets/fonts/Figtree-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BE7876806A90452680FD7428 /* Figtree-Medium.ttf */ = {isa = PBXFileReference; name = "Figtree-Medium.ttf"; path = "../src/assets/fonts/Figtree-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3091F6A9F4B1450092097DCB /* Figtree-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-MediumItalic.ttf"; path = "../src/assets/fonts/Figtree-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E7E6B8565E8B47DAA8AB5D3B /* Figtree-Regular.ttf */ = {isa = PBXFileReference; name = "Figtree-Regular.ttf"; path = "../src/assets/fonts/Figtree-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7A2652467C7E483B96B8A9FB /* Figtree-SemiBold.ttf */ = {isa = PBXFileReference; name = "Figtree-SemiBold.ttf"; path = "../src/assets/fonts/Figtree-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		10EE22DFCA784EE9B77A7071 /* Figtree-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Figtree-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EAC7EE80E07B43EC91A5B066 /* Figtree-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Figtree-VariableFont_wght.ttf"; path = "../src/assets/fonts/Figtree-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8D32A8979ED6478DA213B6EF /* 1st.png */ = {isa = PBXFileReference; name = "1st.png"; path = "../src/assets/fonts/1st.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BE6A7BDD941F48DBABB754EE /* 2nd.png */ = {isa = PBXFileReference; name = "2nd.png"; path = "../src/assets/fonts/2nd.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F9717CB0DC8148B09D19ECCA /* Figtree-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Figtree-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,32 @@
 				5DCACB8F33CDC322A6C60F78 /* libPods-VinstaPartner.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D9A4F309CDF48849973D89E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C2CF4864ADC04236B8123109 /* Figtree-Black.ttf */,
+				97982B0019D9456AB093F245 /* Figtree-BlackItalic.ttf */,
+				55784C0E7D824F28BCE9073A /* Figtree-Bold.ttf */,
+				322BD9264A0E4206AA5EC411 /* Figtree-BoldItalic.ttf */,
+				7C828E0CF0EF43AF9AF84826 /* Figtree-ExtraBold.ttf */,
+				F9717CB0DC8148B09D19ECCA /* Figtree-ExtraBoldItalic.ttf */,
+				E86D8F6534FD413C8A6A8172 /* Figtree-Italic-VariableFont_wght.ttf */,
+				898F4241371246598829D570 /* Figtree-Italic.ttf */,
+				02ED6B630864409A95EC0163 /* Figtree-Light.ttf */,
+				63080363EC4B467E884444AE /* Figtree-LightItalic.ttf */,
+				BE7876806A90452680FD7428 /* Figtree-Medium.ttf */,
+				3091F6A9F4B1450092097DCB /* Figtree-MediumItalic.ttf */,
+				E7E6B8565E8B47DAA8AB5D3B /* Figtree-Regular.ttf */,
+				7A2652467C7E483B96B8A9FB /* Figtree-SemiBold.ttf */,
+				10EE22DFCA784EE9B77A7071 /* Figtree-SemiBoldItalic.ttf */,
+				EAC7EE80E07B43EC91A5B066 /* Figtree-VariableFont_wght.ttf */,
+				8D32A8979ED6478DA213B6EF /* 1st.png */,
+				BE6A7BDD941F48DBABB754EE /* 2nd.png */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -133,32 +160,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		3D9A4F309CDF48849973D89E /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				C2CF4864ADC04236B8123109 /* Figtree-Black.ttf */,
-				97982B0019D9456AB093F245 /* Figtree-BlackItalic.ttf */,
-				55784C0E7D824F28BCE9073A /* Figtree-Bold.ttf */,
-				322BD9264A0E4206AA5EC411 /* Figtree-BoldItalic.ttf */,
-				7C828E0CF0EF43AF9AF84826 /* Figtree-ExtraBold.ttf */,
-				F9717CB0DC8148B09D19ECCA /* Figtree-ExtraBoldItalic.ttf */,
-				E86D8F6534FD413C8A6A8172 /* Figtree-Italic-VariableFont_wght.ttf */,
-				898F4241371246598829D570 /* Figtree-Italic.ttf */,
-				02ED6B630864409A95EC0163 /* Figtree-Light.ttf */,
-				63080363EC4B467E884444AE /* Figtree-LightItalic.ttf */,
-				BE7876806A90452680FD7428 /* Figtree-Medium.ttf */,
-				3091F6A9F4B1450092097DCB /* Figtree-MediumItalic.ttf */,
-				E7E6B8565E8B47DAA8AB5D3B /* Figtree-Regular.ttf */,
-				7A2652467C7E483B96B8A9FB /* Figtree-SemiBold.ttf */,
-				10EE22DFCA784EE9B77A7071 /* Figtree-SemiBoldItalic.ttf */,
-				EAC7EE80E07B43EC91A5B066 /* Figtree-VariableFont_wght.ttf */,
-				8D32A8979ED6478DA213B6EF /* 1st.png */,
-				BE6A7BDD941F48DBABB754EE /* 2nd.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -240,6 +241,7 @@
 				3B13836447714C64B65F10DD /* Figtree-VariableFont_wght.ttf in Resources */,
 				7AE78449AB7B4F988278F4B5 /* 1st.png in Resources */,
 				7E40A6D154B04A4C9461B7F6 /* 2nd.png in Resources */,
+				E82C55E9E2C187D600CB5738 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +457,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -520,7 +525,9 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

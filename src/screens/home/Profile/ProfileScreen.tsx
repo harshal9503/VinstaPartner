@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, Switch, Button } from 'react-native';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { logout } from '../../utils/storage';
+import { ThemeContext } from '../../../theme/ThemeContext';
+import { logout } from '../../../utils/storage';
 
 export default function ProfileScreen({ navigation }) {
   const { theme, toggleTheme, colors } = useContext(ThemeContext);

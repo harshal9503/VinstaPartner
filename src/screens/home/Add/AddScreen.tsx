@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
-import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeContext } from '../../../theme/ThemeContext';
 
-export default function HomeScreen() {
+export default function AddScreen() {
   const { colors } = useContext(ThemeContext);
 
   return (
@@ -14,7 +14,7 @@ export default function HomeScreen() {
         alignItems: 'center',
       }}
     >
-      <Text style={{ color: colors.text }}>Home Screen</Text>
+      <Text style={{ color: colors.text }}>Add Item</Text>
     </View>
   );
 }
