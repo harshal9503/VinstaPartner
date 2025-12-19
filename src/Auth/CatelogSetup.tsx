@@ -10,31 +10,79 @@ import {
   Modal,
   Alert,
 } from 'react-native';
-import DocumentPicker, { isCancel, types } from 'react-native-document-picker';
+import * as DocumentPicker from 'expo-document-picker';
 import { COLORS } from '../theme/colors';
 import { getFontFamily } from '../utils/fontHelper';
 
 const { width } = Dimensions.get('window');
 
+type CatalogMethod = 'csv' | 'manual';
+
 const CatelogSetup = ({ navigation }: any) => {
-  const [method, setMethod] = useState<'csv' | 'manual'>('manual');
-  const [csvFile, setCsvFile] = useState<any>(null);
+  const [method, setMethod] = useState<CatalogMethod>('manual');
+  const [csvFile, setCsvFile] = useState<{
+    name: string;
+    size?: number | null;
+    uri: string;
+    mimeType?: string | null;
+  } | null>(null);
   const [showPicker, setShowPicker] = useState(false);
 
   const pickCSV = async () => {
     try {
-      const res = await DocumentPicker.pickSingle({
-        type: [types.csv],
-        copyTo: 'cachesDirectory',
+      const result = await DocumentPicker.getDocumentAsync({
+        type: [
+          'text/csv',
+          'application/vnd.ms-excel',
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ],
+        copyToCacheDirectory: true,
+        multiple: false,
       });
-      setCsvFile(res);
-    } catch (err) {
-      if (!isCancel(err)) {
-        Alert.alert('Error', 'Unable to pick CSV file');
+
+      if (result.canceled) {
+        return;
       }
+
+      const file = result.assets[0];
+
+      // Basic CSV validation by mime or extension
+      const isCsvMime =
+        file.mimeType === 'text/csv' ||
+        file.mimeType === 'application/vnd.ms-excel';
+
+      const isCsvExt = file.name?.toLowerCase().endsWith('.csv') ?? false;
+
+      if (!isCsvMime && !isCsvExt) {
+        Alert.alert('Invalid file', 'Please select a CSV file.');
+        return;
+      }
+
+      setCsvFile({
+        name: file.name,
+        size: file.size,
+        uri: file.uri,
+        mimeType: file.mimeType,
+      });
+    } catch (err) {
+      console.log('CSV picker error:', err);
+      Alert.alert('Error', 'Unable to pick CSV file');
     } finally {
       setShowPicker(false);
     }
+  };
+
+  const handleSelectPress = () => {
+    // You can validate csvFile here if method === 'csv'
+    // if (method === 'csv' && !csvFile) {
+    //   Alert.alert('CSV required', 'Please select a CSV file first.');
+    //   return;
+    // }
+
+    navigation.navigate('Food1', {
+      csvFile, // pass file info if needed
+      method,
+    });
   };
 
   return (
@@ -58,9 +106,7 @@ const CatelogSetup = ({ navigation }: any) => {
 
       {/* Page Title */}
       <Text style={styles.pageTitle}>Catlog setup</Text>
-      <Text style={styles.pageDesc}>
-        Add your product for start selling
-      </Text>
+      <Text style={styles.pageDesc}>Add your product for start selling</Text>
 
       {/* Method Card */}
       <View style={styles.card}>
@@ -68,10 +114,7 @@ const CatelogSetup = ({ navigation }: any) => {
 
         <View style={styles.methodsRow}>
           <TouchableOpacity
-            style={[
-              styles.methodBox,
-              method === 'csv' && styles.methodActive,
-            ]}
+            style={[styles.methodBox, method === 'csv' && styles.methodActive]}
             onPress={() => setMethod('csv')}
           >
             <View style={styles.methodIconWrap}>
@@ -131,10 +174,7 @@ const CatelogSetup = ({ navigation }: any) => {
       )}
 
       {/* Select Button */}
-      <TouchableOpacity
-        style={styles.selectBtn}
-        onPress={() => navigation.navigate('Food1')}
-      >
+      <TouchableOpacity style={styles.selectBtn} onPress={handleSelectPress}>
         <Text style={styles.selectText}>Select</Text>
       </TouchableOpacity>
 
