@@ -7,9 +7,8 @@ import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
 import FoodScreen from '../screens/home/FoodScreen/FoodScreen';
 import AddScreen from '../screens/home/Add/AddScreen';
 import BookingsScreen from '../screens/home/Bookings/BookingsScreen';
-import ProfileScreen from '../screens/home/Profile/ProfileScreen';
+import ProfileStack from './ProfileStack';
 
-// PNG ICONS
 const icons = {
   Home: require('../assets/home.png'),
   Food: require('../assets/fooditem.png'),
@@ -28,28 +27,18 @@ export default function BottomTabs() {
       <View style={styles.tabItem}>
         <Image
           source={icons[routeName]}
-          resizeMode="contain"
           style={[
             styles.tabIcon,
-            {
-              tintColor: focused ? colors.primary : colors.inactive,
-            },
+            { tintColor: focused ? colors.primary : colors.inactive },
           ]}
         />
         <Text
           style={[
             styles.tabLabel,
-            {
-              color: focused ? colors.primary : colors.inactive,
-              fontWeight: focused ? '600' : '400',
-            },
+            { color: focused ? colors.primary : colors.inactive },
           ]}
         >
-          {routeName === 'Food'
-            ? 'Food Items'
-            : routeName === 'Bookings'
-            ? 'Bookings'
-            : routeName}
+          {routeName}
         </Text>
       </View>
     );
@@ -63,27 +52,24 @@ export default function BottomTabs() {
       bgColor={colors.tabBg}
       initialRouteName="Home"
       screenOptions={{ headerShown: false }}
-      renderCircle={({ selectedTab, navigate }) => {
-        const isHomeFocused = selectedTab === 'Home';
-
-        return (
-          <TouchableOpacity
-            onPress={() => navigate('Home')}
-            style={[styles.circleButton, { borderColor: colors.primary }]}
-          >
-            <Image
-              source={icons.Home}
-              style={{
-                width: 30,
-                height: 30,
-                // Home icon active only when Home is selected
-                tintColor: isHomeFocused ? colors.primary : colors.inactive,
-              }}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        );
-      }}
+      renderCircle={({ selectedTab, navigate }) => (
+        <TouchableOpacity
+          onPress={() => navigate('Home')}
+          style={[styles.circleButton, { borderColor: colors.primary }]}
+        >
+          <Image
+            source={icons.Home}
+            style={{
+              width: 30,
+              height: 30,
+              tintColor:
+                selectedTab === 'Home'
+                  ? colors.primary
+                  : colors.inactive,
+            }}
+          />
+        </TouchableOpacity>
+      )}
       tabBar={({ routeName, selectedTab, navigate }) => (
         <TouchableOpacity
           onPress={() => navigate(routeName)}
@@ -93,66 +79,27 @@ export default function BottomTabs() {
         </TouchableOpacity>
       )}
     >
-      {/* LEFT SIDE: Food, Add */}
-      <CurvedBottomBar.Screen
-        name="Food"
-        component={FoodScreen}
-        position="LEFT"
-      />
-      <CurvedBottomBar.Screen
-        name="Add"
-        component={AddScreen}
-        position="LEFT"
-      />
-
-      {/* CENTER: Home (circle button) */}
-      <CurvedBottomBar.Screen
-        name="Home"
-        component={HomeScreen}
-        position="CENTER"
-      />
-
-      {/* RIGHT SIDE: Bookings, Profile */}
-      <CurvedBottomBar.Screen
-        name="Bookings"
-        component={BookingsScreen}
-        position="RIGHT"
-      />
-      <CurvedBottomBar.Screen
-        name="Profile"
-        component={ProfileScreen}
-        position="RIGHT"
-      />
+      <CurvedBottomBar.Screen name="Food" component={FoodScreen} position="LEFT" />
+      <CurvedBottomBar.Screen name="Add" component={AddScreen} position="LEFT" />
+      <CurvedBottomBar.Screen name="Home" component={HomeScreen} position="CENTER" />
+      <CurvedBottomBar.Screen name="Bookings" component={BookingsScreen} position="RIGHT" />
+      <CurvedBottomBar.Screen name="Profile" component={ProfileStack} position="RIGHT" />
     </CurvedBottomBar.Navigator>
   );
 }
 
 const styles = StyleSheet.create({
-  tabButton: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  tabItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 15,
-  },
-  tabIcon: {
-    width: 22,
-    height: 22,
-  },
-  tabLabel: {
-    marginTop: 4,
-    fontSize: 12,
-  },
+  tabButton: { flex: 1, alignItems: 'center' },
+  tabItem: { alignItems: 'center', marginTop: 15 },
+  tabIcon: { width: 22, height: 22, resizeMode: 'contain' },
+  tabLabel: { fontSize: 12, marginTop: 4 },
   circleButton: {
     width: 70,
     height: 70,
     borderRadius: 35,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 35,
     borderWidth: 3,
     elevation: 8,
     marginTop: -30,

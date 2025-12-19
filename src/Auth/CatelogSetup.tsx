@@ -10,7 +10,9 @@ import {
   Modal,
   Alert,
 } from 'react-native';
-import DocumentPicker, { isCancel, types } from 'react-native-document-picker';
+//import DocumentPicker, { isCancel, types } from 'react-native-document-picker';
+import { pick, types, isCancel } from '@react-native-documents/picker';
+
 import { COLORS } from '../theme/colors';
 import { getFontFamily } from '../utils/fontHelper';
 
