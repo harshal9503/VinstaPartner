@@ -7,11 +7,14 @@ export const COLORS = {
   background: '#F9F9F9',
   textDark: '#1E1E1E',
   textLight: '#666666',
+  placeholder: '#A0A0A0', // Added placeholder color
   // Backwards-compatible aliases used across the codebase
   text: '#1E1E1E',
   accent: '#FFE8D6',
   cardShadow: 'rgba(0,0,0,0.1)',
   shadow: 'rgba(0,0,0,0.1)',
+  border: '#E5E5E5', // Added for input borders
+  muted: '#666666', // Added for muted text
 };
 
 // Light theme mapped to your old shape

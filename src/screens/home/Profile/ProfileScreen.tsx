@@ -15,10 +15,7 @@ import { getFontFamily, getFontWeight } from '../../../utils/fontHelper';
 import { logout } from '../../../utils/storage';
 import { RotateInUpLeft } from 'react-native-reanimated';
 
-
-
 const { width } = Dimensions.get('window');
-
 
 /* ================= RESPONSIVE ================= */
 const responsiveSize = (size: number) => (width / 375) * size;
@@ -32,31 +29,46 @@ const ProfileScreen = ({ navigation }: any) => {
   const [popupAction, setPopupAction] = useState<null | (() => void)>(null);
 
   const MENU = [
-    { title: 'Profile',
-       icon: require('../../../assets/user1.png'),
-        route: 'ProfileEdit' },
-    { title: "Favourite's", 
-      icon: require('../../../assets/wishlist1.png') ,
+    {
+      title: 'Profile',
+      icon: require('../../../assets/profile2.png'),
+      route: 'ProfileEdit',
+    },
+    {
+      title: "Favourite's",
+      icon: require('../../../assets/wishlist1.png'),
       route: 'Favourite',
     },
-    { title: "My Offer's", icon: 
-      require('../../../assets/offers.png') ,
-      route: 'Myoffer'},
+    {
+      title: "My Offer's",
+      icon: require('../../../assets/offers.png'),
+      route: 'Myoffer',
+    },
 
-    {title:"Dark Mode ",icon:require('../../../assets/dark.png'),
-      route:'DarkMode'
-    }  ,
-    { title: 'Refer To Earn', icon: require('../../../assets/refer.png'),
+    {
+      title: 'Dark Mode ',
+      icon: require('../../../assets/dark.png'),
+      route: 'DarkMode',
+    },
+    {
+      title: 'Refer To Earn',
+      icon: require('../../../assets/refer.png'),
       route: 'Refertoearn',
-     },
-    { title: 'Help', icon: require('../../../assets/support.png')
-      , route: 'Help'
-     },
-    { title: 'Support', icon: require('../../../assets/support.png')
-      , route: 'Support'
-     },
-    { title: "Setting's", icon: require('../../../assets/settings1.png') 
-      , route: 'bottomSettings'
+    },
+    {
+      title: 'Help',
+      icon: require('../../../assets/support.png'),
+      route: 'Help',
+    },
+    {
+      title: 'Support',
+      icon: require('../../../assets/support.png'),
+      route: 'Support',
+    },
+    {
+      title: "Setting's",
+      icon: require('../../../assets/settings1.png'),
+      route: 'bottomSettings',
     },
   ];
 
@@ -68,9 +80,10 @@ const ProfileScreen = ({ navigation }: any) => {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <ScrollView showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: rs(80) }}>
-
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: rs(80) }}
+      >
         {/* HEADER */}
         {/* <View style={styles.header}>
           <Text style={styles.headerTitle}>Profile</Text>
@@ -98,10 +111,26 @@ const ProfileScreen = ({ navigation }: any) => {
         {/* QUICK ACTION BOXES */}
         <View style={styles.boxRow}>
           {[
-            { title: 'Address', icon: require('../../../assets/address1.png'), route: 'Address' },
-            { title: 'My Order', icon: require('../../../assets/order.png'), route: 'Orders' },
-            { title: 'Wallet', icon: require('../../../assets/wallet.png'), route: 'Wallet' },
-            { title: 'Setting', icon: require('../../../assets/settings1.png'), route: 'Setting' },
+            {
+              title: 'Address',
+              icon: require('../../../assets/address1.png'),
+              route: 'Address',
+            },
+            {
+              title: 'My Order',
+              icon: require('../../../assets/order.png'),
+              route: 'Orders',
+            },
+            {
+              title: 'Wallet',
+              icon: require('../../../assets/wallet.png'),
+              route: 'Wallet',
+            },
+            {
+              title: 'Setting',
+              icon: require('../../../assets/settings1.png'),
+              route: 'Setting',
+            },
           ].map((item, index) => (
             <TouchableOpacity
               key={index}
@@ -134,51 +163,48 @@ const ProfileScreen = ({ navigation }: any) => {
         </View>
 
         {/* MENU LIST */}
-         {/* onPress={() => navigation.navigate(item.route)} */}
+        {/* onPress={() => navigation.navigate(item.route)} */}
         {MENU.map((item, index) => (
-  <TouchableOpacity
-    key={index}
-    activeOpacity={0.7}
-    onPress={() => {
-      if (item.route) {
-        navigation.navigate(item.route);
-      }
-    }}
-  >
-    <View
-      style={[
-        styles.menuRow,
-        theme === 'light' && {
-          borderBottomWidth: 1,
-          borderBottomColor: '#eee',
-        },
-      ]}
-    >
-      <View style={styles.menuLeft}>
-        <View
-          style={[
-            styles.menuIconWrap,
-            { backgroundColor: colors.tabBg },
-          ]}
-        >
-          <Image
-            source={item.icon}
-            style={[
-              styles.menuIcon,
-              { tintColor: colors.primary },
-            ]}
-          />
-        </View>
+          <TouchableOpacity
+            key={index}
+            activeOpacity={0.7}
+            onPress={() => {
+              if (item.route) {
+                navigation.navigate(item.route);
+              }
+            }}
+          >
+            <View
+              style={[
+                styles.menuRow,
+                theme === 'light' && {
+                  borderBottomWidth: 1,
+                  borderBottomColor: '#eee',
+                },
+              ]}
+            >
+              <View style={styles.menuLeft}>
+                <View
+                  style={[
+                    styles.menuIconWrap,
+                    { backgroundColor: colors.tabBg },
+                  ]}
+                >
+                  <Image
+                    source={item.icon}
+                    style={[styles.menuIcon, { tintColor: colors.primary }]}
+                  />
+                </View>
 
-        <Text style={[styles.menuText, { color: colors.text }]}>
-          {item.title}
-        </Text>
-      </View>
+                <Text style={[styles.menuText, { color: colors.text }]}>
+                  {item.title}
+                </Text>
+              </View>
 
-      <Text style={[styles.arrow, { color: colors.inactive }]}>›</Text>
-    </View>
-  </TouchableOpacity>
-  ))}
+              <Text style={[styles.arrow, { color: colors.inactive }]}>›</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
 
         {/* ===== DARK MODE TOGGLE (REFER TO EARN KE BAAD) ===== */}
         {/* <View
@@ -233,7 +259,12 @@ const ProfileScreen = ({ navigation }: any) => {
           }
         >
           <View style={styles.optionLeft}>
-            <View style={[styles.optionIconContainer, { backgroundColor: colors.tabBg }]}>
+            <View
+              style={[
+                styles.optionIconContainer,
+                { backgroundColor: colors.tabBg },
+              ]}
+            >
               <Image
                 source={require('../../../assets/logout.png')}
                 style={[styles.optionIcon, { tintColor: colors.primary }]}
@@ -244,8 +275,6 @@ const ProfileScreen = ({ navigation }: any) => {
             </Text>
           </View>
         </TouchableOpacity>
-
-
       </ScrollView>
 
       {/* LOGOUT POPUP */}
@@ -265,7 +294,10 @@ const ProfileScreen = ({ navigation }: any) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={[styles.popupButton, { backgroundColor: colors.primary }]}
+                style={[
+                  styles.popupButton,
+                  { backgroundColor: colors.primary },
+                ]}
                 onPress={() => {
                   setShowPopup(false);
                   popupAction && popupAction();
@@ -498,6 +530,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 3, // Android shadow
   },
-
-
 });
