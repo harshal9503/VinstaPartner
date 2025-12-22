@@ -11,7 +11,7 @@ import {
   Alert,
 } from 'react-native';
 //import DocumentPicker, { isCancel, types } from 'react-native-document-picker';
-import { pick, types, isCancel } from '@react-native-documents/picker';
+// import { pick, types, isCancel } from '@react-native-documents/picker';
 
 import { COLORS } from '../theme/colors';
 import { getFontFamily } from '../utils/fontHelper';
@@ -53,7 +53,8 @@ const CatelogSetup = ({ navigation }: any) => {
         file.mimeType === 'text/csv' ||
         file.mimeType === 'application/vnd.ms-excel';
 
-      const isCsvExt = file.name?.toLowerCase().endsWith('.csv') ?? false;
+      const isCsvExt =
+        file.name?.toLowerCase().endsWith('.csv') ?? false;
 
       if (!isCsvMime && !isCsvExt) {
         Alert.alert('Invalid file', 'Please select a CSV file.');
@@ -176,7 +177,10 @@ const CatelogSetup = ({ navigation }: any) => {
       )}
 
       {/* Select Button */}
-      <TouchableOpacity style={styles.selectBtn} onPress={handleSelectPress}>
+      <TouchableOpacity
+        style={styles.selectBtn}
+        onPress={handleSelectPress}
+      >
         <Text style={styles.selectText}>Select</Text>
       </TouchableOpacity>
 
@@ -195,8 +199,13 @@ const CatelogSetup = ({ navigation }: any) => {
               Choose CSV file from your device
             </Text>
 
-            <TouchableOpacity style={styles.modalOption} onPress={pickCSV}>
-              <Text style={styles.modalOptionText}>Choose from device</Text>
+            <TouchableOpacity
+              style={styles.modalOption}
+              onPress={pickCSV}
+            >
+              <Text style={styles.modalOptionText}>
+                Choose from device
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity

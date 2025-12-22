@@ -16,6 +16,7 @@ import Food1 from '../Auth/Food1';
 import Food2 from '../Auth/Food2';
 import Food3 from '../Auth/Food3';
 import Food4 from '../Auth/Food4';
+import PricingScreen from '../screens/home/HomeScreen/components/Orders/Pricing';
 
 
 
@@ -41,6 +42,7 @@ export default function AuthStack() {
       <Stack.Screen name="Food2" component={Food2} />
       <Stack.Screen name="Food3" component={Food3} />
       <Stack.Screen name="Food4" component={Food4} />
+      <Stack.Screen name="PricingScreen" component={PricingScreen} />
     </Stack.Navigator>
   );
 }
