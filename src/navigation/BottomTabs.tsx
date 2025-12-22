@@ -6,13 +6,14 @@ import { ThemeContext } from '../theme/ThemeContext';
 import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
 import FoodScreen from '../screens/home/FoodScreen/FoodScreen';
 import AddScreen from '../screens/home/Add/AddScreen';
-import BookingsScreen from '../screens/home/Bookings/BookingsScreen';
+import Order from '../screens/home/Orders/order';
 import ProfileScreen from '../screens/home/Profile/ProfileScreen';
+import order from '../screens/home/Orders/order';
 
 const icons = {
   Home: require('../assets/home.png'),
   Food: require('../assets/fooditem.png'),
-  Bookings: require('../assets/booking.png'),
+  Orders: require('../assets/order.png'),
   Profile: require('../assets/profile.png'),
   Add: require('../assets/add.png'),
 };
@@ -82,7 +83,7 @@ export default function BottomTabs() {
       <CurvedBottomBar.Screen name="Food" component={FoodScreen} position="LEFT" />
       <CurvedBottomBar.Screen name="Add" component={AddScreen} position="LEFT" />
       <CurvedBottomBar.Screen name="Home" component={HomeScreen} position="CENTER" />
-      <CurvedBottomBar.Screen name="Bookings" component={BookingsScreen} position="RIGHT" />
+      <CurvedBottomBar.Screen name="Orders" component={order} position="RIGHT" />
       <CurvedBottomBar.Screen name="Profile" component={ProfileScreen} position="RIGHT" />
     </CurvedBottomBar.Navigator>
   );

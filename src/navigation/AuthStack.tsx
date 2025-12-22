@@ -66,10 +66,6 @@ export default function AuthStack() {
       <Stack.Screen name="Food2" component={Food2} />
       <Stack.Screen name="Food3" component={Food3} />
       <Stack.Screen name="Food4" component={Food4} />
-<<<<<<< HEAD
-{/* Profile folder file navigation */}
-      <Stack.Screen name="ProfileMain" component={ProfileScreen} />
-=======
 
       {/* App */}
       <Stack.Screen name="Home" component={AppStack} />
@@ -78,28 +74,17 @@ export default function AuthStack() {
       {/* Profile */}
       <Stack.Screen name="ProfileMain" component={ProfileScreen} />
       <Stack.Screen name="ProfileEdit" component={MyProfile} />
->>>>>>> b76ca8843b7e33727820e55d04cab26c2f160e50
       <Stack.Screen name="Address" component={Address} />
       <Stack.Screen name="Orders" component={Orders} />
       <Stack.Screen name="Wallet" component={Wallet} />
       <Stack.Screen name="Setting" component={Setting} />
-<<<<<<< HEAD
-      <Stack.Screen name="ProfileEdit" component={MyProfile} />
-=======
->>>>>>> b76ca8843b7e33727820e55d04cab26c2f160e50
       <Stack.Screen name="Favourite" component={Favourite} />
       <Stack.Screen name="Support" component={Support} />
       <Stack.Screen name="Help" component={Help} />
       <Stack.Screen name="Myoffer" component={Myoffer} />
-<<<<<<< HEAD
-      <Stack.Screen name="Refertoearn" component={Refertoearn} /> 
-      <Stack.Screen name="bottomSettings" component={Settings} />
-      <Stack.Screen name="DarkMode"component={DarkMode}/>
-=======
       <Stack.Screen name="Refertoearn" component={Refertoearn} />
       <Stack.Screen name="bottomSettings" component={Settings} />
       <Stack.Screen name="DarkMode" component={DarkMode} />
->>>>>>> b76ca8843b7e33727820e55d04cab26c2f160e50
     </Stack.Navigator>
   );
 }
