@@ -42,6 +42,10 @@ const ProfileScreen = ({ navigation }: any) => {
     { title: "My Offer's", icon: 
       require('../../../assets/offers.png') ,
       route: 'Myoffer'},
+
+    {title:"Dark Mode ",icon:require('../../../assets/dark.png'),
+      route:'DarkMode'
+    }  ,
     { title: 'Refer To Earn', icon: require('../../../assets/refer.png'),
       route: 'Refertoearn',
      },
@@ -51,7 +55,9 @@ const ProfileScreen = ({ navigation }: any) => {
     { title: 'Support', icon: require('../../../assets/support.png')
       , route: 'Support'
      },
-    { title: "Setting's", icon: require('../../../assets/settings1.png') },
+    { title: "Setting's", icon: require('../../../assets/settings1.png') 
+      , route: 'bottomSettings'
+    },
   ];
 
   const openPopup = (message: string, action: () => void) => {
@@ -175,7 +181,7 @@ const ProfileScreen = ({ navigation }: any) => {
   ))}
 
         {/* ===== DARK MODE TOGGLE (REFER TO EARN KE BAAD) ===== */}
-        <View
+        {/* <View
           style={[
             styles.menuRow,
             theme === 'light' && {
@@ -215,7 +221,7 @@ const ProfileScreen = ({ navigation }: any) => {
               ]}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
         {/* LOGOUT */}
         <TouchableOpacity
           style={styles.optionRow}
