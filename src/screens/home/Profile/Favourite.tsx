@@ -20,10 +20,14 @@ const Favourite = () => {
   const navigation = useNavigation<any>();
   const [activeTab, setActiveTab] = useState<'Food' | 'Restaurant'>('Food');
   const [heartScales] = useState<{ [key: number]: Animated.Value }>({});
-  const { theme ,colors} = useContext(ThemeContext);
+  const { theme, colors } = useContext(ThemeContext);
 
   const [restaurants, setRestaurants] = useState([
-    { id: 1, name: 'Bistro Excellence', img: require('../../../assets/r1.png') },
+    {
+      id: 1,
+      name: 'Bistro Excellence',
+      img: require('../../../assets/r1.png'),
+    },
     { id: 2, name: 'Memo San', img: require('../../../assets/r2.png') },
     { id: 3, name: 'Elite Ember', img: require('../../../assets/r3.png') },
   ]);
@@ -103,25 +107,29 @@ const Favourite = () => {
   };
 
   return (
-     <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <StatusBar
         barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
         backgroundColor="transparent"
         translucent
       />
 
-
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={require('../../../assets/back.png')} style={[styles.backIcon, { tintColor: colors.text }]} />
+          <Image
+            source={require('../../../assets/back.png')}
+            style={[styles.backIcon, { tintColor: colors.text }]}
+          />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: colors.text }]}>Favourite</Text>
+        <Text style={[styles.headerTitle, { color: colors.text }]}>
+          Favourite
+        </Text>
         <View style={{ width: 22 }} />
       </View>
 
       {/* Tabs */}
-       <View style={styles.tabRowOuter}>
+      <View style={styles.tabRowOuter}>
         <View
           style={[
             styles.tabRow,
@@ -142,19 +150,18 @@ const Favourite = () => {
             activeOpacity={0.9}
           >
             <Text
-  style={[
-    styles.tabText,
-    {
-      color:
-        activeTab === 'Food'
-          ? '#FFFFFF' // active = white (both themes)
-          : theme === 'dark'
-          ? '#B0B0B0' // inactive dark theme
-          : '#555555', // inactive light theme
-    },
-  ]}
->
-
+              style={[
+                styles.tabText,
+                {
+                  color:
+                    activeTab === 'Food'
+                      ? '#FFFFFF' // active = white (both themes)
+                      : theme === 'dark'
+                      ? '#B0B0B0' // inactive dark theme
+                      : '#555555', // inactive light theme
+                },
+              ]}
+            >
               Food Items
             </Text>
           </TouchableOpacity>
@@ -170,15 +177,15 @@ const Favourite = () => {
             <Text
               style={[
                 styles.tabText,
-              
-                   {
-      color:
-        activeTab === 'Restaurant'
-          ? '#FFFFFF' 
-          : theme === 'dark'
-          ? '#B0B0B0' 
-          : '#555555', 
-    },
+
+                {
+                  color:
+                    activeTab === 'Restaurant'
+                      ? '#FFFFFF'
+                      : theme === 'dark'
+                      ? '#B0B0B0'
+                      : '#555555',
+                },
               ]}
             >
               Restaurants
@@ -196,9 +203,9 @@ const Favourite = () => {
           <View style={styles.grid}>
             {foodItems.length > 0 ? (
               foodItems.map(f => (
-               <TouchableOpacity
-                key={f.id}
-                style={[styles.foodCard, { backgroundColor: colors.tabBg}]}
+                <TouchableOpacity
+                  key={f.id}
+                  style={[styles.foodCard, { backgroundColor: colors.tabBg }]}
                   activeOpacity={0.9}
                   onPress={() => navigation.navigate('fooddetails')}
                 >
@@ -234,10 +241,10 @@ const Favourite = () => {
                       </Text>
                     </View>
                     <View style={styles.timeRow}>
-                       <Image
+                      <Image
                         source={require('../../../assets/clock.png')}
                         style={styles.clockIcon}
-                      /> 
+                      />
                       <Text style={[styles.timeText, { color: colors.text }]}>
                         {f.time}
                       </Text>
@@ -246,20 +253,18 @@ const Favourite = () => {
                 </TouchableOpacity>
               ))
             ) : (
-              <Text style={[styles.emptyText, ]}>
-                No favourite food items.
-              </Text>
+              <Text style={[styles.emptyText]}>No favourite food items.</Text>
             )}
           </View>
         ) : (
           <>
             {restaurants.length > 0 ? (
               restaurants.map(r => (
-                 <TouchableOpacity
-              key={r.id}
-              style={[styles.card, { backgroundColor: colors.tabBg }]}
-              onPress={() => navigation.navigate('restaurentDetails')}
-            >
+                <TouchableOpacity
+                  key={r.id}
+                  style={[styles.card, { backgroundColor: colors.tabBg }]}
+                  onPress={() => navigation.navigate('restaurentDetails')}
+                >
                   <Image source={r.img} style={styles.cardImg} />
                   <View style={styles.cardContent}>
                     <View style={styles.ratingBadge}>
@@ -277,12 +282,7 @@ const Favourite = () => {
                         source={require('../../../assets/location1.png')}
                         style={styles.locIcon}
                       />
-                      <Text
-                        style={[
-                          styles.location,
-                          { color: colors.text },
-                        ]}
-                      >
+                      <Text style={[styles.location, { color: colors.text }]}>
                         Near MC College, Barpeta Town
                       </Text>
                       <Animated.View
@@ -303,33 +303,21 @@ const Favourite = () => {
                       </Animated.View>
                     </View>
                     <View style={styles.infoRow}>
-                      <Text
-                        style={[styles.subInfo, { color: colors.text }]}
-                      >
+                      <Text style={[styles.subInfo, { color: colors.text }]}>
                         FAST FOOD
                       </Text>
                       <Image
                         source={require('../../../assets/meter.png')}
                         style={styles.metaIcon}
                       />
-                      <Text
-                        style={[
-                          styles.metaText,
-                          { color: colors.text },
-                        ]}
-                      >
+                      <Text style={[styles.metaText, { color: colors.text }]}>
                         590.0 m
                       </Text>
                       <Image
                         source={require('../../../assets/clock.png')}
                         style={styles.metaIcon}
                       />
-                      <Text
-                        style={[
-                          styles.metaText,
-                          { color: colors.text },
-                        ]}
-                      >
+                      <Text style={[styles.metaText, { color: colors.text }]}>
                         25 min
                       </Text>
                     </View>
@@ -337,9 +325,7 @@ const Favourite = () => {
                 </TouchableOpacity>
               ))
             ) : (
-              <Text style={[styles.emptyText, ]}>
-                No favourite restaurants.
-              </Text>
+              <Text style={[styles.emptyText]}>No favourite restaurants.</Text>
             )}
           </>
         )}

@@ -38,6 +38,11 @@ import DarkMode from '../screens/home/Profile/DarkMode';
 
 /* Other */
 import PricingScreen from '../screens/home/HomeScreen/components/Orders/Pricing';
+import PricingBrowse from '../screens/home/HomeScreen/components/Orders/PricingBrowse';
+import PricingAddPromo from '../screens/home/HomeScreen/components/Orders/PricingAddPromo';
+import PricingEdit from '../screens/home/HomeScreen/components/Orders/PricingEdit';
+import AddPromo2 from '../screens/home/HomeScreen/components/Orders/AddPromo2';
+import AddPromo3 from '../screens/home/HomeScreen/components/Orders/AddPromo3';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,7 +62,10 @@ export default function AuthStack() {
       {/* Store Setup */}
       <Stack.Screen name="SelectLocation" component={SelectLocation} />
       <Stack.Screen name="StoreHours" component={StoreHours} />
-      <Stack.Screen name="SelectDeliveryZones" component={SelectDeliveryZones} />
+      <Stack.Screen
+        name="SelectDeliveryZones"
+        component={SelectDeliveryZones}
+      />
       <Stack.Screen name="DeliveryCharges" component={DeliveryCharges} />
       <Stack.Screen name="CatelogSetup" component={CatelogSetup} />
 
@@ -70,6 +78,11 @@ export default function AuthStack() {
       {/* App */}
       <Stack.Screen name="Home" component={AppStack} />
       <Stack.Screen name="PricingScreen" component={PricingScreen} />
+      <Stack.Screen name="PricingBrowse" component={PricingBrowse} />
+      <Stack.Screen name="PricingAddPromo" component={PricingAddPromo} />
+      <Stack.Screen name="PricingEdit" component={PricingEdit} />
+      <Stack.Screen name="AddPromo2" component={AddPromo2} />
+      <Stack.Screen name="AddPromo3" component={AddPromo3} />
 
       {/* Profile */}
       <Stack.Screen name="ProfileMain" component={ProfileScreen} />
