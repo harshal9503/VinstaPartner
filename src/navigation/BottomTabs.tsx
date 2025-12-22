@@ -7,7 +7,7 @@ import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
 import FoodScreen from '../screens/home/FoodScreen/FoodScreen';
 import AddScreen from '../screens/home/Add/AddScreen';
 import BookingsScreen from '../screens/home/Bookings/BookingsScreen';
-import ProfileStack from './ProfileStack';
+import ProfileScreen from '../screens/home/Profile/ProfileScreen';
 
 const icons = {
   Home: require('../assets/home.png'),
@@ -83,7 +83,7 @@ export default function BottomTabs() {
       <CurvedBottomBar.Screen name="Add" component={AddScreen} position="LEFT" />
       <CurvedBottomBar.Screen name="Home" component={HomeScreen} position="CENTER" />
       <CurvedBottomBar.Screen name="Bookings" component={BookingsScreen} position="RIGHT" />
-      <CurvedBottomBar.Screen name="Profile" component={ProfileStack} position="RIGHT" />
+      <CurvedBottomBar.Screen name="Profile" component={ProfileScreen} position="RIGHT" />
     </CurvedBottomBar.Navigator>
   );
 }
