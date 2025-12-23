@@ -13,7 +13,6 @@ import { COLORS } from '../../../../../theme/colors';
 import { getFontFamily } from '../../../../../utils/fontHelper';
 
 const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
-// Updated to match the image: 500 for Thursday, others to create a realistic curve
 const weeklyOrders = [120, 180, 220, 500, 280, 150, 210];
 
 function WeeklyOrdersCard() {
@@ -39,7 +38,9 @@ function WeeklyOrdersCard() {
       {/* Days of week */}
       <View style={styles.daysRow}>
         {days.map((day, index) => (
-          <Text key={index} style={styles.dayText}>{day}</Text>
+          <Text key={index} style={styles.dayText}>
+            {day}
+          </Text>
         ))}
       </View>
 
@@ -49,7 +50,7 @@ function WeeklyOrdersCard() {
       <View style={styles.graphContainer}>
         {/* Y axis labels */}
         <View style={styles.yAxis}>
-          {[0, 100, 200, 300, 400, 500].map((value) => (
+          {[0, 100, 200, 300, 400, 500].map(value => (
             <Text key={value} style={styles.yAxisText}>
               {value === 0 ? '0' : `${value}`}
             </Text>
@@ -59,7 +60,7 @@ function WeeklyOrdersCard() {
         {/* Graph area */}
         <View style={styles.graphArea}>
           {/* Horizontal grid lines */}
-          {[0, 1, 2, 3, 4, 5].map((i) => (
+          {[0, 1, 2, 3, 4, 5].map(i => (
             <View
               key={`grid-${i}`}
               style={[styles.gridLine, { top: `${(i / 5) * 100}%` }]}
@@ -67,10 +68,10 @@ function WeeklyOrdersCard() {
           ))}
 
           <View style={styles.curveRow}>
-            {/* Line graph path - simplified visual */}
+            {/* Simple line background (placeholder, still a straight line) */}
             <View style={styles.lineGraph} />
-            
-            {/* Dots and day labels */}
+
+            {/* Dots */}
             {weeklyOrders.map((value, index) => {
               const height = (value / maxOrders) * 100;
               return (
@@ -89,7 +90,14 @@ function WeeklyOrdersCard() {
             })}
 
             {/* Tooltip for Thursday */}
-            <View style={[styles.tooltipContainer, { bottom: `${(weeklyOrders[3] / maxOrders) * 100 + 10}%` }]}>
+            <View
+              style={[
+                styles.tooltipContainer,
+                {
+                  bottom: `${(weeklyOrders[3] / maxOrders) * 100 + 10}%`,
+                },
+              ]}
+            >
               <View style={styles.tooltipBubble}>
                 <Text style={styles.tooltipValue}>500</Text>
               </View>
@@ -112,7 +120,15 @@ interface StatBoxProps {
   percentBgColor?: string;
 }
 
-function StatBox({ title, value, percent, data = [8, 5, 12, 10, 7, 9, 11, 8, 6], color = '#22C55E', percentColor = '#16A34A', percentBgColor = '#DCFCE7' }: StatBoxProps) {
+function StatBox({
+  title,
+  value,
+  percent,
+  data = [8, 5, 12, 10, 7, 9, 11, 8, 6],
+  color = '#22C55E',
+  percentColor = '#16A34A',
+  percentBgColor = '#DCFCE7',
+}: StatBoxProps) {
   return (
     <View style={styles.statBox}>
       <View style={styles.statBoxHeader}>
@@ -126,22 +142,21 @@ function StatBox({ title, value, percent, data = [8, 5, 12, 10, 7, 9, 11, 8, 6],
       <View style={styles.statBoxRow}>
         <Text style={styles.statBoxValue}>{value}</Text>
         <View style={[styles.percentChip, { backgroundColor: percentBgColor }]}>
-          <Text style={[styles.percentChipText, { color: percentColor }]}>{percent}</Text>
+          <Text style={[styles.percentChipText, { color: percentColor }]}>
+            {percent}
+          </Text>
         </View>
       </View>
 
       {/* Bar graph */}
       <View style={styles.graphContainerSmall}>
         <View style={styles.graph}>
-          {data.map((value, index) => {
-            const height = Math.min((value / 12) * 50, 50);
+          {data.map((v, index) => {
+            const height = Math.min((v / 12) * 50, 50);
             return (
-              <View 
-                key={index} 
-                style={[
-                  styles.graphBar,
-                  { height, backgroundColor: color }
-                ]}
+              <View
+                key={index}
+                style={[styles.graphBar, { height, backgroundColor: color }]}
               />
             );
           })}
@@ -152,22 +167,21 @@ function StatBox({ title, value, percent, data = [8, 5, 12, 10, 7, 9, 11, 8, 6],
 }
 
 export default function PricingScreen() {
-  // Data for the bar graphs matching the image
   const avgMarginData = [3, 5, 8, 7, 6, 9, 8, 5, 6];
   const activePromosData = [4, 6, 5, 7, 8, 6, 9, 8, 7];
+
   const navigation = useNavigation();
 
   const handleBrowsePress = () => {
-    // Navigate to your desired screen
-    // navigation.navigate('YourScreenName');
-    console.log('Browse button pressed');
+    // IMPORTANT: this must match the name used in your navigator
+    navigation.navigate('PricingBrowse' as never);
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView
         style={styles.container}
-        contentContainerStyle={{ paddingBottom: 100 }} // Increased padding for browse button
+        contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Weekly orders chart */}
@@ -175,19 +189,19 @@ export default function PricingScreen() {
 
         {/* Stat boxes */}
         <View style={styles.statsRow}>
-          <StatBox 
-            title="Avg margin" 
-            value="28%" 
-            percent="+8.13%" 
+          <StatBox
+            title="Avg margin"
+            value="28%"
+            percent="+8.13%"
             data={avgMarginData}
             color="#22C55E"
             percentColor="#16A34A"
             percentBgColor="#DCFCE7"
           />
-          <StatBox 
-            title="Active promos" 
-            value={8} 
-            percent="+8.13%" 
+          <StatBox
+            title="Active promos"
+            value={8}
+            percent="+8.13%"
             data={activePromosData}
             color="#3B82F6"
             percentColor="#16A34A"
@@ -196,7 +210,7 @@ export default function PricingScreen() {
         </View>
 
         {/* Browse Button */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.browseButton}
           onPress={handleBrowsePress}
           activeOpacity={0.9}
@@ -358,14 +372,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 2,
     borderColor: '#FFFFFF',
-  },
-  dayLabel: {
-    fontSize: 10,
-    color: '#9CA3AF',
-    fontFamily: getFontFamily('Medium'),
-    marginTop: 4,
-    position: 'absolute',
-    bottom: 0,
   },
 
   /* Tooltip */

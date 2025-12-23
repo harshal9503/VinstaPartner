@@ -11,7 +11,7 @@ import {
   Alert,
 } from 'react-native';
 //import DocumentPicker, { isCancel, types } from 'react-native-document-picker';
-import { pick, types, isCancel } from '@react-native-documents/picker';
+// import { pick, types, isCancel } from '@react-native-documents/picker';
 
 import { COLORS } from '../theme/colors';
 import { getFontFamily } from '../utils/fontHelper';
@@ -109,9 +109,7 @@ const CatelogSetup = ({ navigation }: any) => {
 
       {/* Page Title */}
       <Text style={styles.pageTitle}>Catlog setup</Text>
-      <Text style={styles.pageDesc}>
-        Add your product for start selling
-      </Text>
+      <Text style={styles.pageDesc}>Add your product for start selling</Text>
 
       {/* Method Card */}
       <View style={styles.card}>
@@ -119,10 +117,7 @@ const CatelogSetup = ({ navigation }: any) => {
 
         <View style={styles.methodsRow}>
           <TouchableOpacity
-            style={[
-              styles.methodBox,
-              method === 'csv' && styles.methodActive,
-            ]}
+            style={[styles.methodBox, method === 'csv' && styles.methodActive]}
             onPress={() => setMethod('csv')}
           >
             <View style={styles.methodIconWrap}>

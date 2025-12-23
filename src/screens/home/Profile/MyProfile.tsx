@@ -20,7 +20,7 @@ const { width, height } = Dimensions.get('window');
 
 const ProfileEdit = () => {
   const navigation = useNavigation<any>();
-  const { theme } = useContext(ThemeContext);
+  const { theme, colors } = useContext(ThemeContext);
   const isDark = theme === 'dark';
 
   const [name, setName] = useState('');
@@ -67,7 +67,7 @@ const ProfileEdit = () => {
     multiline,
   }: any) => (
     <>
-      <Text style={[styles.label, { color: COLORS.subText }]}>
+      <Text style={[styles.label, { color: colors.text }]}>
         {label}
       </Text>
 
@@ -87,7 +87,7 @@ const ProfileEdit = () => {
           multiline={multiline}
           placeholder={`Enter ${label.toLowerCase()}`}
           placeholderTextColor={COLORS.placeholder}
-          style={[styles.input, { color: COLORS.text }]}
+          style={[styles.input, { color: COLORS.primary }]}
         />
 
         <Image
@@ -119,7 +119,14 @@ const ProfileEdit = () => {
         <View style={{ width: 22 }} />
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{
+          flexGrow: 1,
+          paddingBottom: 80,
+        }}
+      >
         {/* PROFILE IMAGE */}
         <View style={styles.avatarWrapper}>
           <TouchableOpacity onPress={() => setPickerVisible(true)}>
@@ -137,18 +144,21 @@ const ProfileEdit = () => {
         {/* FORM */}
         <View style={styles.form}>
           <InputBox label="Name" value={name} onChange={setName} />
+
           <InputBox
             label="Phone Number"
             value={phone}
             onChange={setPhone}
             keyboardType="phone-pad"
           />
+
           <InputBox
             label="Gmail"
             value={email}
             onChange={setEmail}
             keyboardType="email-address"
           />
+
           <InputBox
             label="Delivery Address"
             value={address}
@@ -163,37 +173,13 @@ const ProfileEdit = () => {
             <Text style={styles.saveText}>Save</Text>
           </TouchableOpacity>
         </View>
+
+        {/* 🔴 THIS FIXES EVERYTHING */}
+        <View style={{ height: 60 }} />
       </ScrollView>
-
-      {/* IMAGE PICKER */}
-      <Modal visible={pickerVisible} transparent animationType="fade">
-        <View style={styles.modalBg}>
-          <View style={[styles.modalBox, { backgroundColor: COLORS.card }]}>
-            <TouchableOpacity
-              style={styles.modalBtn}
-              onPress={() => pickImage('camera')}
-            >
-              <Text style={{ color: COLORS.text }}>Take Photo</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.modalBtn}
-              onPress={() => pickImage('gallery')}
-            >
-              <Text style={{ color: COLORS.text }}>Choose from Gallery</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => setPickerVisible(false)}>
-              <Text style={{ marginTop: 10, color: COLORS.subText }}>
-                Cancel
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </View>
-  );
-};
+  )
+}
 
 export default ProfileEdit;
 
