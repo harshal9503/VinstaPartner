@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: 40, // Reduced padding since no bottom nav
-     paddingTop: Platform.OS === 'android' ? 30 : 0,
+     paddingTop: Platform.OS === 'android' ? 5 : 0,
   },
 });
