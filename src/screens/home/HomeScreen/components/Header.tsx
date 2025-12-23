@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { COLORS } from '../../../../theme/colors';
 import { getFontFamily } from '../../../../utils/fontHelper';
+import { Platform, StatusBar } from 'react-native';
+
+
 
 
 export default function Header() {
@@ -35,7 +38,10 @@ export default function Header() {
 const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 24,
-    paddingTop: Platform.OS === 'ios' ? 20 : 40,
+   paddingTop: Platform.OS === 'ios'
+  ? 10
+  : (StatusBar.currentHeight || 0) * 0.4,
+
     paddingBottom: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
