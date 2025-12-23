@@ -43,7 +43,8 @@ import PricingAddPromo from '../screens/home/HomeScreen/components/Orders/Pricin
 import PricingEdit from '../screens/home/HomeScreen/components/Orders/PricingEdit';
 import AddPromo2 from '../screens/home/HomeScreen/components/Orders/AddPromo2';
 import AddPromo3 from '../screens/home/HomeScreen/components/Orders/AddPromo3';
-
+import Orderdetail from '../screens/home/OrdersTab/Orderdetail';
+import TrackOrder from '../screens/home/OrdersTab/TrackOrder';
 const Stack = createNativeStackNavigator();
 
 export default function AuthStack() {
@@ -98,6 +99,16 @@ export default function AuthStack() {
       <Stack.Screen name="Refertoearn" component={Refertoearn} />
       <Stack.Screen name="bottomSettings" component={Settings} />
       <Stack.Screen name="DarkMode" component={DarkMode} />
+      
+<Stack.Screen
+  name="OrderDetails"
+  component={Orderdetail}
+/>
+<Stack.Screen name="TrackOrder" component={TrackOrder} />
+
+
+      {/* //Orders file  */}
+      
     </Stack.Navigator>
   );
 }

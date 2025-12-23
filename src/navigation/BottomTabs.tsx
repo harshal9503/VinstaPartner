@@ -6,9 +6,9 @@ import { ThemeContext } from '../theme/ThemeContext';
 import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
 import FoodScreen from '../screens/home/FoodScreen/FoodScreen';
 import AddScreen from '../screens/home/Add/AddScreen';
-import Order from '../screens/home/Orders/order';
+import Orders from '../screens/home/Add/foodScreen/HomeScreen/components/Orders/Orders';
 import ProfileScreen from '../screens/home/Profile/ProfileScreen';
-import order from '../screens/home/Orders/order';
+import order from '../screens/home/OrdersTab/order';
 
 const icons = {
   Home: require('../assets/home.png'),
