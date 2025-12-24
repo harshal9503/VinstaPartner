@@ -11,205 +11,195 @@ import {
   Platform,
   StatusBar,
 } from 'react-native';
-import { COLORS } from '../../../theme/colors';
 import { ThemeContext } from '../../../theme/ThemeContext';
+import { COLORS } from '../../../theme/colors';
 import { getFontFamily, getFontWeight } from '../../../utils/fontHelper';
 import { logout } from '../../../utils/storage';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
+const rs = (size: number) => (width / 375) * size;
 
-/* ================= RESPONSIVE ================= */
-const responsiveSize = (size: number) => (width / 375) * size;
-const rs = responsiveSize;
+/**
+ * SAME TOP SPACING FOR ANDROID & IOS
+ * (matches your working Profile screen)
+ */
+const TOP_SPACE =
+  Platform.OS === 'android'
+    ? StatusBar.currentHeight ?? rs(24)
+    : rs(44);
 
-const ProfileScreen = ({ navigation }: any) => {
-  const { theme, toggleTheme, colors } = useContext(ThemeContext);
+/**
+ * Bottom tab height buffer
+ */
+const TAB_BAR_HEIGHT = Platform.OS === 'android' ? rs(90) : rs(70);
 
+const SECTIONS = [
+  { title: 'Restaurant Information', icon: require('../../../assets/profile2.png'),
+     route: 'RestroInformation', key: 'restaurant' },
+  { title: 'Delivery Partners', icon: require('../../../assets/delivery.png'), route: 
+    'DeliveryPartners', key: 'delivery' },
+  { title: 'Order Management', icon: require('../../../assets/order.png'), 
+    route: 'OrderManagements', key: 'orders' },
+  { title: 'Menu Management', icon: require('../../../assets/menu.png'),
+     route: 'MenuManagements', key: 'menu' },
+  { title: 'Payouts & Earnings', icon: require('../../../assets/wallet.png'),
+     route: 'Payoutsearning', key: 'earnings' },
+  { title: 'Delivery Settings', icon: require('../../../assets/settings1.png'),
+     route: 'DeliverySetting', key: 'deliverySettings' },
+  { title: 'Ratings & Reviews', icon: require('../../../assets/star.png'),
+     route: 'Ratingreview', key: 'reviews' },
+  { title: 'Documents & Verification', icon: require('../../../assets/document.png'),
+     route: 'DocandVeri', key: 'documents' },
+  { title: 'Notifications & Preferences', icon: require('../../../assets/notification.png'),
+     route: 'NotiandPrefere', key: 'notifications' },
+  { title: 'Help & Support', icon: require('../../../assets/support.png'), route: 
+    'HelpandSupport', key: 'support' },
+  { title: 'Profile Actions', icon: require('../../../assets/settings1.png'), route:
+     'ProfileActions', key: 'actions' },
+];
+
+const RestaurantProfileScreen = ({ navigation }: any) => {
+  const { colors } = useContext(ThemeContext);
   const [showPopup, setShowPopup] = useState(false);
-  
-  const [popupMessage, setPopupMessage] = useState('');
-  const [popupAction, setPopupAction] = useState<null | (() => void)>(null);
-
-  const MENU = [
-    { title: 'Profile', icon: require('../../../assets/profile2.png'), route: 'ProfileEdit' },
-    { title: "Favourite's", icon: require('../../../assets/wishlist1.png'), route: 'Favourite' },
-    { title: "My Offer's", icon: require('../../../assets/offers.png'), route: 'Myoffer' },
-    { title: 'Refer To Earn', icon: require('../../../assets/refer.png'), route: 'Refertoearn' },
-    { title: 'Help', icon: require('../../../assets/support.png'), route: 'Help' },
-    { title: 'Support', icon: require('../../../assets/support.png'), route: 'Support' },
-    { title: "Setting's", icon: require('../../../assets/settings1.png'), route: 'bottomSettings' },
-  ];
-
-  const openPopup = (message: string, action: () => void) => {
-    setPopupMessage(message);
-    setPopupAction(() => action);
-    setShowPopup(true);
-  };
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      {/* STATUSBAR */}
+
+      {/* STATUS BAR — SAME AS PROFILE SCREEN */}
       <StatusBar
-        barStyle={theme === 'light' ? 'dark-content' : 'light-content'}
-        backgroundColor={colors.background}
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content"
       />
 
-      {/* RESPONSIVE HEADER */}
-      <View style={[styles.header, { backgroundColor: colors.background }]}>
-        <Text style={[styles.headerTitle, { color: colors.secondary }]}>Profile</Text>
-      </View>
+      {/* MAIN CONTENT */}
+      <View style={{ paddingTop: TOP_SPACE }}>
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: rs(80) }}
-      >
-        {/* PROFILE INFO */}
-        <View style={styles.profileRow}>
-          <Image
-            source={require('../../../assets/user.png')}
-            style={styles.profileImage}
-          />
-          <View>
-            <Text style={[styles.name, { color: colors.text }]}>Harshal Sharma</Text>
-            <Text style={[styles.subText, { color: colors.inactive }]}>harshal@gmail.com</Text>
-            <Text style={[styles.subText, { color: colors.inactive }]}>+91 1234567890</Text>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: TAB_BAR_HEIGHT }}
+        >
+
+          {/* HEADER */}
+          <View style={styles.profileRow}>
+            <Image
+              source={require('../../../assets/user.png')}
+              style={styles.profileImage}
+            />
+            <View>
+              <Text style={[styles.name, { color: colors.text }]}>
+                Spice Hub Restaurant
+              </Text>
+              <Text style={[styles.subText, { color: colors.inactive }]}>
+                Owner: Rahul Verma
+              </Text>
+              <Text style={[styles.subText, { color: colors.inactive }]}>
+                +91 9876543210
+              </Text>
+            </View>
           </View>
-        </View>
 
-        {/* QUICK ACTION BOXES */}
-        <View style={styles.boxRow}>
-          {[
-            { title: 'Address', icon: require('../../../assets/address1.png'), route: 'Address' },
-            { title: 'My Order', icon: require('../../../assets/order.png'), route: 'Orders' },
-            { title: 'Wallet', icon: require('../../../assets/wallet.png'), route: 'Wallet' },
-            { title: 'Setting', icon: require('../../../assets/settings1.png'), route: 'Setting' },
-          ].map((item, index) => (
+          {/* SECTIONS */}
+          {SECTIONS.map((item, index) => (
             <TouchableOpacity
               key={index}
-              style={[styles.box, { backgroundColor: colors.tabBg }]}
-              onPress={() => navigation.navigate(item.route)}
-              activeOpacity={0.8}
+              activeOpacity={0.75}
+              onPress={() =>
+                navigation.navigate(item.route, {
+                  type: item.key,
+                  title: item.title,
+                })
+              }
             >
-              <Image
-                source={item.icon}
-                style={[styles.boxIcon, { tintColor: colors.primary }]}
-              />
-              <Text style={[styles.boxText, { color: colors.text }]}>{item.title}</Text>
+              <View style={styles.menuRow}>
+                <View style={styles.menuLeft}>
+                  <View
+                    style={[
+                      styles.menuIconWrap,
+                      { backgroundColor: colors.tabBg },
+                    ]}
+                  >
+                    <Image
+                      source={item.icon}
+                      style={[
+                        styles.menuIcon,
+                        { tintColor: colors.primary },
+                      ]}
+                    />
+                  </View>
+                  <Text style={[styles.menuText, { color: colors.text }]}>
+                    {item.title}
+                  </Text>
+                </View>
+                <Text style={[styles.arrow, { color: colors.inactive }]}>›</Text>
+              </View>
             </TouchableOpacity>
           ))}
-        </View>
 
-        {/* MENU LIST */}
-        {MENU.map((item, index) => (
+          {/* LOGOUT */}
           <TouchableOpacity
-            key={index}
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate(item.route)}
+            style={styles.logoutRow}
+            onPress={() => setShowPopup(true)}
           >
-            <View
-              style={[
-                styles.menuRow,
-                theme === 'light' && { borderBottomWidth: 1, borderBottomColor: '#eee' },
-              ]}
-            >
-              <View style={styles.menuLeft}>
-                <View style={[styles.menuIconWrap, { backgroundColor: colors.tabBg }]}>
-                  <Image
-                    source={item.icon}
-                    style={[styles.menuIcon, { tintColor: colors.primary }]}
-                  />
-                </View>
-                <Text style={[styles.menuText, { color: colors.text }]}>{item.title}</Text>
-              </View>
-              <Text style={[styles.arrow, { color: colors.inactive }]}>›</Text>
-            </View>
+            <Text style={[styles.logoutText, { color: colors.primary }]}>
+              Logout
+            </Text>
           </TouchableOpacity>
-        ))}
 
-        {/* LOGOUT */}
-        <TouchableOpacity
-          style={styles.optionRow}
-          onPress={() =>
-            openPopup('Are you sure you want to logout?', async () => {
-              await logout();
-              navigation.navigate('Login');
-            })
-          }
-        >
-          <View style={styles.optionLeft}>
-            <View style={[styles.optionIconContainer, { backgroundColor: colors.tabBg }]}>
-              <Image
-                source={require('../../../assets/logout.png')}
-                style={[styles.optionIcon, { tintColor: colors.primary }]}
-              />
-            </View>
-            <Text style={[styles.optionLabel, { color: colors.primary }]}>Logout</Text>
-          </View>
-        </TouchableOpacity>
-      </ScrollView>
+        </ScrollView>
+      </View>
 
       {/* LOGOUT POPUP */}
       <Modal transparent visible={showPopup} animationType="fade">
         <View style={styles.popupOverlay}>
           <View style={[styles.popupBox, { backgroundColor: colors.tabBg }]}>
-            <Text style={[styles.popupText, { color: colors.text }]}>{popupMessage}</Text>
-            <View style={styles.popupButtonsContainer}>
+            <Text style={[styles.popupText, { color: colors.text }]}>
+              Are you sure you want to logout?
+            </Text>
+
+            <View style={styles.popupButtons}>
               <TouchableOpacity
-                style={[styles.popupButton, styles.popupCancelButton]}
                 onPress={() => setShowPopup(false)}
+                style={[styles.popupBtn, styles.cancelBtn]}
               >
-                <Text style={styles.popupButtonText}>Cancel</Text>
+                <Text>Cancel</Text>
               </TouchableOpacity>
+
               <TouchableOpacity
-                style={[styles.popupButton, { backgroundColor: colors.primary }]}
-                onPress={() => {
-                  setShowPopup(false);
-                  popupAction && popupAction();
+                onPress={async () => {
+                  await logout();
+                  navigation.replace('Login');
                 }}
+                style={[styles.popupBtn, { backgroundColor: colors.primary }]}
               >
-                <Text style={[styles.popupButtonText, { color: '#fff' }]}>OK</Text>
+                <Text style={{ color: '#fff' }}>OK</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </Modal>
+
     </View>
   );
 };
 
-export default ProfileScreen;
+export default RestaurantProfileScreen;
 
 /* ================= STYLES ================= */
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
 
-  /* ===== RESPONSIVE HEADER ===== */
-  header: {
-    height: Platform.OS === 'ios' ? rs(90) : rs(70),
-    paddingTop: Platform.OS === 'ios' ? rs(40) : rs(20),
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: COLORS.background,
-  },
-  headerTitle: {
-    fontSize: rs(20),
-    fontFamily: getFontFamily('Bold'),
-    fontWeight: getFontWeight('Bold'),
-    color: COLORS.secondary,
-  },
+const styles = StyleSheet.create({
+  container: { flex: 1 },
 
   profileRow: {
     flexDirection: 'row',
-    padding: rs(20),
+    paddingHorizontal: rs(20),
+    paddingVertical: rs(16),
     alignItems: 'center',
   },
   profileImage: {
-    width: rs(80),
-    height: rs(80),
-    borderRadius: rs(40),
+    width: rs(70),
+    height: rs(70),
+    borderRadius: rs(35),
     marginRight: rs(15),
   },
   name: {
@@ -220,87 +210,39 @@ const styles = StyleSheet.create({
   subText: {
     fontSize: rs(14),
     fontFamily: getFontFamily('Regular'),
-    fontWeight: getFontWeight('Regular'),
     marginTop: rs(2),
-  },
-
-  boxRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: rs(15),
-  },
-  box: {
-    width: rs(80),
-    borderRadius: rs(14),
-    padding: rs(12),
-    alignItems: 'center',
-    elevation: 4,
-  },
-  boxIcon: {
-    width: rs(26),
-    height: rs(26),
-    marginBottom: rs(6),
-  },
-  boxText: {
-    fontSize: rs(11),
-    textAlign: 'center',
   },
 
   menuRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: rs(10),
+    paddingVertical: rs(14),
+    paddingHorizontal: rs(18),
   },
-  menuLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+  menuLeft: { flexDirection: 'row', alignItems: 'center' },
   menuIconWrap: {
-    width: rs(40),
-    height: rs(40),
-    borderRadius: rs(12),
+    width: rs(42),
+    height: rs(42),
+    borderRadius: rs(14),
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: rs(14),
-    marginLeft: rs(5),
   },
-  menuIcon: {
-    width: rs(20),
-    height: rs(20),
-  },
+  menuIcon: { width: rs(20), height: rs(20) },
   menuText: {
     fontSize: rs(16),
+    fontFamily: getFontFamily('Medium'),
   },
-  arrow: {
-    fontSize: rs(30),
-    marginRight: rs(10),
-  },
+  arrow: { fontSize: rs(26) },
 
-  optionRow: {
-    paddingVertical: rs(16),
-  },
-  optionLeft: {
-    flexDirection: 'row',
+  logoutRow: {
+    paddingVertical: rs(22),
     alignItems: 'center',
   },
-  optionIconContainer: {
-    width: rs(44),
-    height: rs(44),
-    borderRadius: rs(12),
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: rs(15),
-    marginLeft: rs(10),
-  },
-  optionIcon: {
-    width: rs(22),
-    height: rs(22),
-  },
-  optionLabel: {
+  logoutText: {
     fontSize: rs(16),
     fontFamily: getFontFamily('SemiBold'),
-    fontWeight: getFontWeight('SemiBold'),
   },
 
   popupOverlay: {
@@ -308,40 +250,29 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: rs(20),
   },
   popupBox: {
-    width: width * 0.85,
-    borderRadius: rs(16),
-    padding: rs(25),
-    alignItems: 'center',
-    ...Platform.select({
-      ios: { shadowColor: COLORS.shadow, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 8 },
-      android: { elevation: 8 },
-    }),
+    width: '85%',
+    borderRadius: rs(14),
+    padding: rs(22),
   },
   popupText: {
     fontSize: rs(16),
     textAlign: 'center',
-    marginBottom: rs(25),
+    marginBottom: rs(22),
+    fontFamily: getFontFamily('Medium'),
   },
-  popupButtonsContainer: {
+  popupButtons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
   },
-  popupButton: {
-    borderRadius: rs(10),
+  popupBtn: {
     paddingVertical: rs(12),
-    paddingHorizontal: rs(20),
-    minWidth: rs(100),
+    minWidth: rs(110),
     alignItems: 'center',
+    borderRadius: rs(10),
   },
-  popupCancelButton: {
-    backgroundColor: '#F0F0F0',
-    marginRight: rs(10),
-  },
-  popupButtonText: {
-    fontSize: rs(14),
+  cancelBtn: {
+    backgroundColor: COLORS.inactive,
   },
 });

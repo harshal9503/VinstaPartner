@@ -63,23 +63,25 @@ export default function OrderStatusTabs({
 const styles = StyleSheet.create({
   tabsWrapper: {
     marginBottom: 24,
-    marginTop: Platform.OS === 'ios' ? 0 : -10,
+    //marginTop: Platform.OS === 'ios' ? 0 : -10,
   },
 
   tabs: {
     flexDirection: 'row',
-    backgroundColor: '#F4F4F4',
-    borderRadius: 30,
-    marginHorizontal: 14,
-    padding: 4,
+  backgroundColor: '#F2F2F2',   // light grey like image
+  borderRadius: 18,
+  marginHorizontal: 16,
+  padding: 4, 
   },
 
   tab: {
-    paddingVertical: 10,
-    paddingHorizontal: 18,
-    alignItems: 'center',
-    borderRadius: 24,
-    marginRight: 6,
+     flex: 1,                     // equal width tabs
+  paddingVertical: 14,
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 10,
+  padding:10,
+ 
   },
 
   activeTab: {
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
 
   tabText: {
     color: COLORS.text || '#111827',
-    fontSize: 12,
+    fontSize: 13,
     fontFamily: getFontFamily('Medium'),
   },
 

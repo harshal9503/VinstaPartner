@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   View,
   Text,
@@ -13,15 +13,22 @@ import {
   Modal,
 } from 'react-native';
 import UnderShipMent from './UnderShipMent';
+import { ThemeContext } from '../../../theme/ThemeContext';
 import OrderStatusTabs from './OrderTab';
+import Header from './Header';
 import Completed from './Completed';
 import { COLORS } from '../../../theme/colors';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { getFontFamily } from '../../../utils/fontHelper';
+import { getFontFamily, getFontWeight } from '../../../utils/fontHelper';
 
-const { width, height } = Dimensions.get('window');
+
+const { width } = Dimensions.get('window');
+const rs = (size: number) => (width / 375) * size;
+
+const HEADER_HEIGHT = rs(56);
+const ANDROID_STATUS_BAR = StatusBar.currentHeight ?? 0;
 const ORDERS = [
   {
     id: '1',
@@ -105,7 +112,8 @@ const UNDER_SHIPMENT_ORDERS = [
 const OrdersScreen = () => {
   const [activeTab, setActiveTab] = useState(0);
   const navigation = useNavigation();
-
+ const { theme, colors } = useContext(ThemeContext);
+ 
   const statusBarHeight = getStatusBarHeight();
 const [showOrderDetails, setShowOrderDetails] = useState(false);
 
@@ -200,29 +208,16 @@ const [noteText, setNoteText] = useState('');
   <SafeAreaView style={styles.safe}>
     <StatusBar
       barStyle="dark-content"
-      backgroundColor={COLORS.secondary}
+      backgroundColor={COLORS.background}
     />
 
     {/* ===== HEADER ===== */}
-    <View style={[styles.headerWrapper, { paddingTop: statusBarHeight }]}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Image
-            source={require('../../../assets/back.png')}
-            style={styles.backIcon}
-          />
-        </TouchableOpacity>
-
-        <Text style={styles.headerTitle}>Your Orders</Text>
-
-        <TouchableOpacity>
-          <Image
-            source={require('../../../assets/notification.png')}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-      </View>
-    </View>
+    <View style={{ flex: 1 }}>
+  {/* ORDER STATUS TABS */}
+  <Header
+    activeTab={activeTab}
+    onTabChange={setActiveTab}
+  />
 
    <View style={{ flex: 1 }}>
   {/* ORDER STATUS TABS */}
@@ -321,7 +316,7 @@ const [noteText, setNoteText] = useState('');
 
             <View style={styles.actionRow}>
               <TouchableOpacity
-                style={styles.cancelBtn}
+                style={styles.ordercancelbtn}
                 onPress={() => setShowOrderDetails(false)}
               >
                 <Text>CANCEL</Text>
@@ -377,13 +372,11 @@ const [noteText, setNoteText] = useState('');
   </View>
 </Modal>
 
-
+</View>
 </View>
     </SafeAreaView>
     
-    
-);
- }
+        )}
 export default OrdersScreen;
 const ORANGE = '#F0821F';
 
@@ -412,19 +405,19 @@ safe: {
     paddingTop: 10,
   },
    header: {
-     flexDirection: 'row',
-     alignItems: 'center',
-     paddingHorizontal: width * 0.05,
-     paddingBottom: 12,
-     justifyContent: 'space-between',
-      borderBottomWidth: 1,
-  borderBottomColor: '#EEEEEE',
+     width: '100%',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  paddingHorizontal: rs(16),
+  borderBottomWidth: 1,
+  borderBottomColor: COLORS.border,
    },
 
   headerTitle: {
-    fontSize: 18,
-       fontFamily: getFontFamily('SemiBold'),
-       color: COLORS.text,
+     fontSize: rs(18),
+  fontFamily: getFontFamily( 'SemiBold'),
+  fontWeight: getFontWeight('600'),
   },
 
   icon: {
@@ -652,11 +645,13 @@ actionRow: {
   justifyContent: 'space-between',
 },
 
-cancelBtn: {
-  flex: 1,
+ordercancelbtn: {
+ // flex: 1,
   backgroundColor: '#EEE',
   padding: 12,
   borderRadius: 10,
+  paddingHorizontal:30,
+  paddingVertical:15,
   marginRight: 8,
   alignItems: 'center',
    marginBottom:20,
@@ -665,7 +660,7 @@ cancelBtn: {
 confirmBtn: {
   flex: 1,
   backgroundColor: COLORS.primary,
-  padding: 12,
+  padding: 14,
   borderRadius: 10,
   marginLeft: 8,
   alignItems: 'center',
@@ -684,9 +679,10 @@ doubleBtnRow: {
 
 
 processingBtn: {
-  flex: 1,
+  //flex: 1,
   marginRight: 5,
   paddingVertical: 12,
+  paddingHorizontal:10,
   borderRadius: 8,
   alignItems: 'center',
   justifyContent: 'center',
@@ -697,7 +693,7 @@ processingBtn: {
 readyBtn: {
   flex: 1,
   marginLeft: 8,
-  paddingVertical: 4,
+  paddingVertical: 12,
   borderRadius: 8,
   alignItems: 'center',
   justifyContent: 'center',

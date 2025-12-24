@@ -131,10 +131,10 @@ export default function AddScreen() {
       <View style={[styles.headerWrapper, { paddingTop: statusBarHeight }]}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-            <Image
+            {/* <Image
               source={require('../../../assets/back.png')}
               style={styles.backIcon}
-            />
+            /> */}
           </TouchableOpacity>
 
           <Text style={styles.headerTitle}>Shop menu</Text>
@@ -300,6 +300,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: width * 0.05,
     paddingBottom: 12,
+    paddingTop:5,
     justifyContent: 'space-between',
   },
 

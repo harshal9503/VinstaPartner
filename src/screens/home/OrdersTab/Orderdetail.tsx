@@ -6,19 +6,34 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Platform,
+  Dimensions,
 } from 'react-native';
-import Completed from './Completed';
 import { useRoute } from '@react-navigation/native';
 import { getFontFamily } from '../../../utils/fontHelper';
+import { COLORS } from '../../../theme/colors';
+
+const { height } = Dimensions.get('window');
+
+// Responsive padding function
+const rp = (size: number) => (height / 812) * size;
 
 const OrderDetails = () => {
   const route = useRoute<any>();
   const { order } = route.params;
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}
+    >
       {/* STATUS */}
-      <View style={styles.statusBox}>
+      <View
+        style={[
+          styles.statusBox,
+          { paddingTop: Platform.OS === 'android' ? rp(22) : rp(22) },
+        ]}
+      >
         <Text style={styles.statusText}>Order was delivered</Text>
       </View>
 
@@ -62,7 +77,7 @@ const OrderDetails = () => {
   );
 };
 
-const BillRow = ({ label, value }) => (
+const BillRow = ({ label, value }: { label: string; value: string }) => (
   <View style={styles.billRow}>
     <Text style={styles.billLabel}>{label}</Text>
     <Text style={styles.billValue}>{value}</Text>
@@ -70,16 +85,18 @@ const BillRow = ({ label, value }) => (
 );
 
 export default OrderDetails;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingTop: 40,
+    padding:10,
     backgroundColor: '#F9FAFB',
-    padding: 16,
   },
 
   statusBox: {
     backgroundColor: '#FFF7ED',
-    padding: 12,
+    paddingHorizontal: 12,
+    paddingBottom: 12,
     borderRadius: 12,
     marginBottom: 12,
   },
@@ -159,7 +176,7 @@ const styles = StyleSheet.create({
   },
 
   invoiceBtn: {
-    backgroundColor: '#EA580C',
+    backgroundColor: COLORS.primary,
     paddingVertical: 14,
     borderRadius: 14,
     alignItems: 'center',
