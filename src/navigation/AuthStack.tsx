@@ -23,19 +23,12 @@ import AppStack from './AppStack';
 
 /* Profile */
 import ProfileScreen from '../screens/home/Profile/ProfileScreen';
-import Address from '../screens/home/Profile/Address';
-import Orders from '../screens/home/Profile/Orders';
-import Wallet from '../screens/home/Profile/Wallet';
-import Setting from '../screens/home/Profile/Setting';
-import MyProfile from '../screens/home/Profile/MyProfile';
-import Favourite from '../screens/home/Profile/Favourite';
-import Support from '../screens/home/Profile/Support';
-import Help from '../screens/home/Profile/Help';
-import Myoffer from '../screens/home/Profile/Myoffer';
-import Refertoearn from '../screens/home/Profile/Refertoearn';
-import Settings from '../screens/home/Profile/Settings';
-import DarkMode from '../screens/home/Profile/DarkMode';
-
+import HelpandSupport from '../screens/home/Profile/HelpandSupport';
+import RestroInfo from '../screens/home/Profile/RestroInfo';
+import DeliveryPartners from '../screens/home/Profile/DeliveryPartner';
+import OrderManagments from '../screens/home/Profile/OrderManagment';
+import MenuManagements from '../screens/home/Profile/MenuManagement';
+import Payoutsearning from '../screens/home/Profile/Payoutsearning';
 /* Other */
 import PricingScreen from '../screens/home/HomeScreen/components/Orders/Pricing';
 import PricingBrowse from '../screens/home/HomeScreen/components/Orders/PricingBrowse';
@@ -45,6 +38,14 @@ import AddPromo2 from '../screens/home/HomeScreen/components/Orders/AddPromo2';
 import AddPromo3 from '../screens/home/HomeScreen/components/Orders/AddPromo3';
 import Orderdetail from '../screens/home/OrdersTab/Orderdetail';
 import TrackOrder from '../screens/home/OrdersTab/TrackOrder';
+import DeliveryPartner from '../screens/home/Profile/DeliveryPartner';
+import OrderManagment from '../screens/home/Profile/OrderManagment';
+import PayoutsEarning from '../screens/home/Profile/Payoutsearning';
+import DeliverySetting from '../screens/home/Profile/DeliverySetting';
+import Ratingreview from '../screens/home/Profile/Ratingreview';
+import DocandVeri from '../screens/home/Profile/DocandVeri';
+import NotiandPrefere from '../screens/home/Profile/NotiandPrefere';
+import ProfileActions from '../screens/home/Profile/ProfileActions';
 const Stack = createNativeStackNavigator();
 
 export default function AuthStack() {
@@ -86,29 +87,27 @@ export default function AuthStack() {
       <Stack.Screen name="AddPromo3" component={AddPromo3} />
 
       {/* Profile */}
-      <Stack.Screen name="ProfileMain" component={ProfileScreen} />
-      <Stack.Screen name="ProfileEdit" component={MyProfile} />
-      <Stack.Screen name="Address" component={Address} />
-      <Stack.Screen name="Orders" component={Orders} />
-      <Stack.Screen name="Wallet" component={Wallet} />
-      <Stack.Screen name="Setting" component={Setting} />
-      <Stack.Screen name="Favourite" component={Favourite} />
-      <Stack.Screen name="Support" component={Support} />
-      <Stack.Screen name="Help" component={Help} />
-      <Stack.Screen name="Myoffer" component={Myoffer} />
-      <Stack.Screen name="Refertoearn" component={Refertoearn} />
-      <Stack.Screen name="bottomSettings" component={Settings} />
-      <Stack.Screen name="DarkMode" component={DarkMode} />
-      
-<Stack.Screen
-  name="OrderDetails"
-  component={Orderdetail}
-/>
-<Stack.Screen name="TrackOrder" component={TrackOrder} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen name="HelpandSupport" component={HelpandSupport} />
+      <Stack.Screen name="RestroInformation" component={RestroInfo} />
+      <Stack.Screen name="DeliveryPartners" component={DeliveryPartner} />
+      <Stack.Screen name="OrderManagements" component={OrderManagment} />
+      <Stack.Screen name="MenuManagements" component={MenuManagements} />
+      <Stack.Screen name="Payoutsearning" component={PayoutsEarning} />
+      <Stack.Screen name="DeliverySetting" component={DeliverySetting} />
+      <Stack.Screen name="Ratingreview" component={Ratingreview} />
+      <Stack.Screen name="DocandVeri" component={DocandVeri} />
+      <Stack.Screen name="NotiandPrefere" component={NotiandPrefere} />
+      <Stack.Screen name="ProfileActions" component={ProfileActions} />
+      <Stack.Screen
+        name="OrderDetails"
+        component={Orderdetail}
+      />
+      <Stack.Screen name="TrackOrder" component={TrackOrder} />
 
 
       {/* //Orders file  */}
-      
+
     </Stack.Navigator>
   );
 }

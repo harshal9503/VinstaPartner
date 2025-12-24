@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { getFontFamily } from '../../../utils/fontHelper';
+import { COLORS } from '../../../theme/colors';
 
 const TrackOrder = () => {
   const route = useRoute<any>();
@@ -172,7 +173,7 @@ backIcon:{
 
   orderId: {
     fontSize: 12,
-    color: '#F97316',
+    color: COLORS.primary,
     fontFamily: getFontFamily('Medium'),
   },
 
@@ -202,7 +203,7 @@ backIcon:{
   },
 
   highlight: {
-    color: '#EA580C',
+    color: COLORS.primary,
   },
 
   status: {
@@ -269,7 +270,7 @@ backIcon:{
   },
 
   callBtn: {
-    backgroundColor: '#EA580C',
+    backgroundColor: COLORS.primary,
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 10,

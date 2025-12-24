@@ -11,10 +11,12 @@ import {
   StatusBar,
   Platform,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { COLORS } from '../../../theme/colors';
-import { getFontFamily } from '../../../utils/fontHelper';
+import {
+  getFontFamily,
+  getFontWeight,
+} from '../../../utils/fontHelper';
 
 const { width } = Dimensions.get('window');
 
@@ -67,8 +69,6 @@ const FOOD_ITEMS = [
 /* ================= SCREEN ================= */
 
 export default function FoodScreen() {
-  const navigation = useNavigation<any>();
-
   const [searchText, setSearchText] = useState('');
   const [selectedMeal, setSelectedMeal] = useState('All');
   const [selectedFoodType, setSelectedFoodType] = useState('All');
@@ -76,15 +76,12 @@ export default function FoodScreen() {
   const STATUS_BAR_HEIGHT = getStatusBarHeight();
   const BOTTOM_SPACE = Platform.OS === 'ios' ? 90 : 80;
 
-  /* ================= FILTER LOGIC ================= */
-
   const filteredItems = FOOD_ITEMS.filter(item => {
-    const matchSearch =
-      item.name.toLowerCase().includes(searchText.toLowerCase());
-
+    const matchSearch = item.name
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
     const matchMeal =
       selectedMeal === 'All' || item.mealType === selectedMeal;
-
     const matchFoodType =
       selectedFoodType === 'All' || item.foodType === selectedFoodType;
 
@@ -95,33 +92,32 @@ export default function FoodScreen() {
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
 
-      {/* ================= HEADER ================= */}
+      {/* HEADER */}
       <View style={[styles.headerWrapper, { paddingTop: STATUS_BAR_HEIGHT }]}>
-        <View style={styles.header}>
-          <View style={{ width: 24 }} />
-          <Text style={styles.headerTitle}>Food Items</Text>
-          <View style={{ width: 24 }} />
-        </View>
+        <Text style={styles.headerTitle}>Food Items</Text>
       </View>
 
-      {/* ================= CONTENT ================= */}
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: BOTTOM_SPACE }}
       >
         {/* SEARCH */}
         <View style={styles.searchBox}>
+          <Image
+            source={require('../../../assets/search.png')}
+            style={styles.searchIcon}
+          />
           <TextInput
             placeholder="Search food item"
-            placeholderTextColor="#888"
-            style={styles.searchInput}
+            placeholderTextColor="#9E9E9E"
             value={searchText}
             onChangeText={setSearchText}
+            style={styles.searchInput}
           />
         </View>
 
-        {/* MEAL TYPE FILTER */}
         <Text style={styles.filterTitle}>Meal Type</Text>
+
         <View style={styles.filterRow}>
           {MEAL_TYPES.map(type => (
             <TouchableOpacity
@@ -144,8 +140,8 @@ export default function FoodScreen() {
           ))}
         </View>
 
-        {/* FOOD TYPE FILTER */}
         <Text style={styles.filterTitle}>Food Type</Text>
+
         <View style={styles.filterRow}>
           {FOOD_TYPES.map(type => (
             <TouchableOpacity
@@ -168,12 +164,10 @@ export default function FoodScreen() {
           ))}
         </View>
 
-        {/* TOTAL */}
         <Text style={styles.totalText}>
           Total items ({filteredItems.length})
         </Text>
 
-        {/* FOOD LIST - CENTERED */}
         <View style={styles.foodListContainer}>
           {filteredItems.map(item => (
             <View key={item.id} style={styles.card}>
@@ -190,13 +184,6 @@ export default function FoodScreen() {
               <Text style={styles.price}>{item.price}</Text>
             </View>
           ))}
-
-          {/* EMPTY */}
-          {filteredItems.length === 0 && (
-            <View style={styles.emptyBox}>
-              <Text style={styles.emptyText}>No food items found</Text>
-            </View>
-          )}
         </View>
       </ScrollView>
     </View>
@@ -212,37 +199,50 @@ const styles = StyleSheet.create({
   },
 
   headerWrapper: {
-    backgroundColor: COLORS.secondary,
-  },
-  header: {
-    flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: width * 0.05,
-    paddingBottom: 12,
-    justifyContent: 'center',
+    paddingVertical: 16,
   },
   headerTitle: {
     fontSize: 18,
-    fontFamily: getFontFamily('SemiBold'),
     color: COLORS.text,
+    fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('SemiBold'),
   },
 
+  /* SEARCH (IOS + ANDROID SAME) */
   searchBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#F3F3F3',
-    margin: width * 0.05,
-    borderRadius: 26,
-    paddingHorizontal: 18,
-    paddingVertical: 14,
+    marginHorizontal: width * 0.05,
+    marginTop: width * 0.05,
+    borderRadius: 12,
+    height: 52,
+    paddingHorizontal: 16,
+  },
+  searchIcon: {
+    width: 18,
+    height: 18,
+    tintColor: '#9E9E9E',
+    marginRight: 10,
   },
   searchInput: {
+    flex: 1,
+    fontSize: 14,
+    color: COLORS.text,
     fontFamily: getFontFamily('Regular'),
+    fontWeight: getFontWeight('Regular'),
+    paddingVertical: 0,
+    textAlignVertical: 'center',
+    includeFontPadding: false,
   },
 
   filterTitle: {
     marginHorizontal: width * 0.05,
-    marginTop: 10,
-    fontFamily: getFontFamily('SemiBold'),
+    marginTop: 20,
     fontSize: 14,
+    fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('SemiBold'),
   },
 
   filterRow: {
@@ -263,20 +263,23 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
   },
   filterText: {
+    fontSize: 13,
     fontFamily: getFontFamily('Medium'),
+    fontWeight: getFontWeight('Medium'),
+    color: COLORS.text,
   },
   activeFilterText: {
     color: '#fff',
-    fontFamily: getFontFamily('Bold'),
   },
 
   totalText: {
     marginHorizontal: width * 0.05,
     marginTop: 16,
+    fontSize: 15,
     fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('SemiBold'),
   },
 
-  // NEW CENTERED FOOD LIST CONTAINER
   foodListContainer: {
     alignItems: 'center',
   },
@@ -289,7 +292,6 @@ const styles = StyleSheet.create({
     marginTop: 14,
     borderRadius: 18,
     padding: 14,
-    alignSelf: 'center',
   },
   foodImg: {
     width: 60,
@@ -301,29 +303,25 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   foodName: {
-    fontFamily: getFontFamily('SemiBold'),
     fontSize: 15,
+    fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('SemiBold'),
   },
   meta: {
     fontSize: 12,
     color: '#777',
-    marginTop: 2,
+    fontFamily: getFontFamily('Regular'),
+    fontWeight: getFontWeight('Regular'),
   },
   sku: {
     fontSize: 11,
     color: '#999',
+    fontFamily: getFontFamily('Regular'),
+    fontWeight: getFontWeight('Regular'),
   },
   price: {
-    fontFamily: getFontFamily('SemiBold'),
     fontSize: 15,
-  },
-
-  emptyBox: {
-    alignItems: 'center',
-    marginTop: 60,
-  },
-  emptyText: {
     fontFamily: getFontFamily('SemiBold'),
-    fontSize: 16,
+    fontWeight: getFontWeight('SemiBold'),
   },
 });

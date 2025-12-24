@@ -9,42 +9,49 @@ import {
 } from 'react-native';
 import { getFontFamily } from '../../../utils/fontHelper';
 import { useNavigation } from '@react-navigation/native';
+import { COLORS } from '../../../theme/colors';
 
 
 const UnderShipmentCard = ({ item, onTrack }) => {
  const navigation = useNavigation<any>();
   return (
-    <ScrollView showsVerticalScrollIndicator={false}
-    >
-    <View style={styles.card}>
-      <View style={styles.row}>
-        {/* IMAGE */}
-        <Image source={item.image} style={styles.image} />
+   <View style={{ flex: 1 }}>
+  <ScrollView
+    showsVerticalScrollIndicator={false}
+    contentContainerStyle={{
+     
+    }}
+  >
+    {[1, 2,].map((_, index) => (
+      <View key={index} style={styles.card}>
+        <View style={styles.row}>
+          {/* IMAGE */}
+          <Image source={item.image} style={styles.image} />
 
-        {/* INFO */}
-        <View style={styles.info}>
-          <Text style={styles.orderId}>#{item.id}</Text>
-          <Text style={styles.title}>{item.name}</Text>
-          <Text style={styles.meta}>
-            {item.date} · {item.items} Items
-          </Text>
+          {/* INFO */}
+          <View style={styles.info}>
+            <Text style={styles.orderId}>#{item.id}</Text>
+            <Text style={styles.title}>{item.name}</Text>
+            <Text style={styles.meta}>
+              {item.date} · {item.items} Items
+            </Text>
+          </View>
         </View>
-      </View>
 
-      {/* BUTTON */}
-      <TouchableOpacity
-      style={styles.trackBtn}
-      onPress={() =>
-        navigation.navigate('TrackOrder', { order: item })
-      }
-    >
-      <Text style={styles.trackText}>TRACK ORDER</Text>
-    </TouchableOpacity>
-    
-  
-    </View>
-      
-    </ScrollView>
+        {/* BUTTON */}
+        <TouchableOpacity
+          style={styles.trackBtn}
+          onPress={() =>
+            navigation.navigate('TrackOrder', { order: item })
+          }
+        >
+          <Text style={styles.trackText}>TRACK ORDER</Text>
+        </TouchableOpacity>
+      </View>
+    ))}
+  </ScrollView>
+</View>
+
   );
 };
 
@@ -82,7 +89,7 @@ const styles = StyleSheet.create({
 
   orderId: {
     fontSize: 12,
-    color: '#F97316',
+    color: COLORS.primary,
     fontFamily: getFontFamily('Medium'),
   },
 
@@ -102,7 +109,7 @@ const styles = StyleSheet.create({
   trackBtn: {
     marginTop: 12,
     alignSelf: 'flex-end',
-    backgroundColor: '#EA580C',
+    backgroundColor: COLORS.primary,
     paddingHorizontal: 22,
     paddingVertical: 10,
     borderRadius: 10,

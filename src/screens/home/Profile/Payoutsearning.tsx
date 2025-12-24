@@ -1,0 +1,172 @@
+import React, { useContext } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+  Dimensions,
+  Platform,
+  StatusBar,
+  Image,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { ThemeContext } from '../../../theme/ThemeContext';
+import { COLORS } from '../../../theme/colors';
+import { getFontFamily, getFontWeight } from '../../../utils/fontHelper';
+
+const { width } = Dimensions.get('window');
+const rs = (size: number) => (width / 375) * size;
+
+const HEADER_HEIGHT = rs(56);
+const ANDROID_STATUS_BAR = StatusBar.currentHeight ?? 0;
+
+const PayoutsAndEarnings = () => {
+  const { theme, colors } = useContext(ThemeContext);
+  const navigation = useNavigation<any>();
+
+  const payoutData = [
+    { label: "Today's Earnings", value: '₹1,250' },
+    { label: 'Weekly / Monthly Earnings', value: '₹8,750 / ₹32,400' },
+    { label: 'Cash Orders Summary', value: '₹4,200 (12 Orders)' },
+    { label: 'Online Payment Summary', value: '₹28,200 (68 Orders)' },
+    { label: 'Settlement History', value: 'Last Settled: 2 Days Ago' },
+    { label: 'Pending Amount', value: '₹1,500' },
+  ];
+
+  return (
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <StatusBar
+        translucent={Platform.OS === 'android'}
+        backgroundColor="transparent"
+        barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+      />
+
+      {/* ---------- HEADER ---------- */}
+      <View
+        style={[
+          styles.header,
+          {
+            backgroundColor: colors.background,
+            paddingTop: Platform.OS === 'android' ? ANDROID_STATUS_BAR : rs(44),
+            height:
+              HEADER_HEIGHT +
+              (Platform.OS === 'android' ? ANDROID_STATUS_BAR : rs(44)),
+          },
+        ]}
+      >
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image
+            source={require('../../../assets/back.png')}
+            style={[styles.backIcon, { tintColor: colors.text }]}
+          />
+        </TouchableOpacity>
+
+        <Text style={[styles.headerTitle, { color: colors.text }]}>
+          Payouts & Earnings
+        </Text>
+
+        <View style={{ width: rs(22) }} />
+      </View>
+
+      {/* ---------- CONTENT ---------- */}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {payoutData.map((item, index) => (
+          <View
+            key={index}
+            style={[
+              styles.infoCard,
+              {
+                backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff',
+              },
+            ]}
+          >
+            <Text style={[styles.label, { color: COLORS.primary }]}>
+              {item.label}
+            </Text>
+            <Text style={[styles.value, { color: colors.text }]}>
+              {item.value}
+            </Text>
+          </View>
+        ))}
+
+        {/* ---------- ACTION BUTTON ---------- */}
+        <TouchableOpacity style={styles.actionBtn}>
+          <Text style={styles.actionText}>View Settlement History</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
+  );
+};
+
+export default PayoutsAndEarnings;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: rs(16),
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+
+  backIcon: {
+    width: rs(22),
+    height: rs(22),
+    resizeMode: 'contain',
+  },
+
+  headerTitle: {
+    fontSize: rs(18),
+    fontFamily: getFontFamily('Poppins', 'SemiBold'),
+    fontWeight: getFontWeight('600'),
+  },
+
+  scrollContent: {
+    padding: rs(16),
+    paddingBottom: rs(40),
+  },
+
+  infoCard: {
+    padding: rs(16),
+    borderRadius: rs(12),
+    marginBottom: rs(12),
+  },
+
+  label: {
+    fontSize: rs(15),
+    marginBottom: rs(6),
+    fontFamily: getFontFamily('Poppins', 'Medium'),
+    fontWeight: getFontWeight('500'),
+  },
+
+  value: {
+    fontSize: rs(15),
+    fontFamily: getFontFamily('Poppins', 'SemiBold'),
+    fontWeight: getFontWeight('600'),
+  },
+
+  actionBtn: {
+    marginTop: rs(24),
+    backgroundColor: COLORS.primary,
+    paddingVertical: rs(14),
+    borderRadius: rs(12),
+    alignItems: 'center',
+  },
+
+  actionText: {
+    color:'white',
+    fontSize: rs(16),
+    fontFamily: getFontFamily('Poppins', 'SemiBold'),
+    fontWeight: getFontWeight('600'),
+  },
+});

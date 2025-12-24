@@ -78,6 +78,8 @@ const styles = StyleSheet.create({
     color: COLORS.muted || '#9CA3AF',
     marginTop: 4,
     fontFamily: getFontFamily('Regular'),
+        marginBottom:15,
+
   },
   dots: {
     width: 24,
