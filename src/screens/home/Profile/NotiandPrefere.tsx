@@ -75,10 +75,12 @@ const NotificationsPreferences = () => {
         <View
           style={[
             styles.preferenceCard,
-            { backgroundColor: theme === 'dark' ? '#1E1E1E' : COLORS.white },
+            { backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff' },
           ]}
         >
-          <Text style={styles.label}>Order Notifications</Text>
+          <Text style={[styles.label, { color: COLORS.primary }]}>
+            Order Notifications
+          </Text>
           <Switch
             value={orderNotifications}
             onValueChange={setOrderNotifications}
@@ -91,10 +93,12 @@ const NotificationsPreferences = () => {
         <View
           style={[
             styles.preferenceCard,
-            { backgroundColor: theme === 'dark' ? '#1E1E1E' : COLORS.white },
+            { backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff' },
           ]}
         >
-          <Text style={styles.label}>SMS / WhatsApp Alerts</Text>
+          <Text style={[styles.label, { color: COLORS.primary }]}>
+            SMS / WhatsApp Alerts
+          </Text>
           <Switch
             value={smsAlerts}
             onValueChange={setSmsAlerts}
@@ -107,10 +111,12 @@ const NotificationsPreferences = () => {
         <View
           style={[
             styles.preferenceCard,
-            { backgroundColor: theme === 'dark' ? '#1E1E1E' : COLORS.white },
+            { backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff' },
           ]}
         >
-          <Text style={styles.label}>Sound Alerts</Text>
+          <Text style={[styles.label, { color: COLORS.primary }]}>
+            Sound Alerts
+          </Text>
           <Switch
             value={soundAlerts}
             onValueChange={setSoundAlerts}
@@ -123,10 +129,12 @@ const NotificationsPreferences = () => {
         <View
           style={[
             styles.preferenceCard,
-            { backgroundColor: theme === 'dark' ? '#1E1E1E' : COLORS.white },
+            { backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff' },
           ]}
         >
-          <Text style={styles.label}>Auto-Accept Orders</Text>
+          <Text style={[styles.label, { color: COLORS.primary }]}>
+            Auto-Accept Orders
+          </Text>
           <Switch
             value={autoAcceptOrders}
             onValueChange={setAutoAcceptOrders}
@@ -140,6 +148,7 @@ const NotificationsPreferences = () => {
 };
 
 export default NotificationsPreferences;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -179,24 +188,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: rs(16),
-    borderRadius: rs(14),
-    marginBottom: rs(14),
-
-    // iOS shadow
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-
-    // Android shadow
-    elevation: 4,
+    borderRadius: rs(12),
+    marginBottom: rs(12),
   },
 
   label: {
     fontSize: rs(15),
-    color: COLORS.primary,
     fontFamily: getFontFamily('Poppins', 'Medium'),
     fontWeight: getFontWeight('500'),
   },
 });
-

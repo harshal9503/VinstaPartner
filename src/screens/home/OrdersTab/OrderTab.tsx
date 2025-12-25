@@ -4,11 +4,14 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Platform,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import { COLORS } from '../../../theme/colors';
 import { getFontFamily } from '../../../utils/fontHelper';
+
+const { width } = Dimensions.get('window');
+const rs = (size: number) => (width / 375) * size;
 
 const TABS = [
   'Order received',
@@ -62,26 +65,26 @@ export default function OrderStatusTabs({
 
 const styles = StyleSheet.create({
   tabsWrapper: {
-    marginBottom: 24,
-    //marginTop: Platform.OS === 'ios' ? 0 : -10,
+    marginBottom: rs(24),
   },
 
+  /** Grey rounded container */
   tabs: {
     flexDirection: 'row',
-  backgroundColor: '#F2F2F2',   // light grey like image
-  borderRadius: 18,
-  marginHorizontal: 16,
-  padding: 4, 
+    backgroundColor: '#F2F2F2',
+    borderRadius: rs(15),
+    padding: rs(4),
+    marginHorizontal: rs(12),
   },
 
+  /** Individual tab */
   tab: {
-     flex: 1,                     // equal width tabs
-  paddingVertical: 14,
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: 10,
-  padding:10,
- 
+    paddingVertical: rs(14),
+    paddingHorizontal: rs(16),
+    borderRadius: rs(10),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: rs(30), // ✅ responsive right gap like image
   },
 
   activeTab: {
@@ -89,8 +92,8 @@ const styles = StyleSheet.create({
   },
 
   tabText: {
-    color: COLORS.text || '#111827',
-    fontSize: 13,
+    color: '#111827',
+    fontSize: rs(14),
     fontFamily: getFontFamily('Medium'),
   },
 

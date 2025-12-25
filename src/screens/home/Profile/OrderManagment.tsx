@@ -80,14 +80,13 @@ const OrderManagement = () => {
             style={[
               styles.infoCard,
               {
-                backgroundColor: theme === 'dark' ? '#1E1E1E' : COLORS.white,
+                backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff',
               },
             ]}
           >
             <Text style={[styles.label, { color: COLORS.primary }]}>
               {item.label}
             </Text>
-
             <Text style={[styles.value, { color: colors.text }]}>
               {item.value}
             </Text>
@@ -104,6 +103,7 @@ const OrderManagement = () => {
 };
 
 export default OrderManagement;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -138,24 +138,19 @@ const styles = StyleSheet.create({
 
   infoCard: {
     padding: rs(16),
-    borderRadius: rs(14),
+    borderRadius: rs(12),
     marginBottom: rs(12),
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
-    elevation: 3,
   },
 
   label: {
-    fontSize: rs(13),
+    fontSize: rs(15),
     marginBottom: rs(6),
     fontFamily: getFontFamily('Poppins', 'Medium'),
     fontWeight: getFontWeight('500'),
   },
 
   value: {
-    fontSize: rs(16),
+    fontSize: rs(15),
     fontFamily: getFontFamily('Poppins', 'SemiBold'),
     fontWeight: getFontWeight('600'),
   },
@@ -169,7 +164,7 @@ const styles = StyleSheet.create({
   },
 
   actionText: {
-    color: COLORS.white,
+    color: 'white',
     fontSize: rs(16),
     fontFamily: getFontFamily('Poppins', 'SemiBold'),
     fontWeight: getFontWeight('600'),

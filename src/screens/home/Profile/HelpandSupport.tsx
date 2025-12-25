@@ -9,14 +9,17 @@ import {
   StatusBar,
   Platform,
   Dimensions,
+  ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ThemeContext } from '../../../theme/ThemeContext';
+import { COLORS } from '../../../theme/colors';
+import { getFontFamily, getFontWeight } from '../../../utils/fontHelper';
 
 const { width } = Dimensions.get('window');
 const rs = (size: number) => (width / 375) * size;
 
-const HEADER_HEIGHT = Platform.OS === 'ios' ? rs(56) : rs(60);
+const HEADER_HEIGHT = rs(56);
 const ANDROID_STATUS_BAR = StatusBar.currentHeight ?? 0;
 
 const HelpSupport = () => {
@@ -24,10 +27,11 @@ const HelpSupport = () => {
   const navigation = useNavigation<any>();
 
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <StatusBar
+        translucent={Platform.OS === 'android'}
+        backgroundColor="transparent"
         barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
-        backgroundColor={colors.background}
       />
 
       {/* ---------- HEADER ---------- */}
@@ -36,10 +40,10 @@ const HelpSupport = () => {
           styles.header,
           {
             backgroundColor: colors.background,
-            paddingTop: Platform.OS === 'android' ? ANDROID_STATUS_BAR : 0,
+            paddingTop: Platform.OS === 'android' ? ANDROID_STATUS_BAR : rs(44),
             height:
               HEADER_HEIGHT +
-              (Platform.OS === 'android' ? ANDROID_STATUS_BAR : 0),
+              (Platform.OS === 'android' ? ANDROID_STATUS_BAR : rs(44)),
           },
         ]}
       >
@@ -58,7 +62,10 @@ const HelpSupport = () => {
       </View>
 
       {/* ---------- CONTENT ---------- */}
-      <View style={styles.content}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
         <Text style={[styles.title, { color: colors.text }]}>
           Help & Support
         </Text>
@@ -68,38 +75,43 @@ const HelpSupport = () => {
           troubleshooting steps, or any support-related content here.
         </Text>
 
-        <TouchableOpacity style={[styles.card, { backgroundColor: colors.tabBg }]}>
+        <TouchableOpacity style={[styles.card, { backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff' }]}>
           <Text style={[styles.cardText, { color: colors.text }]}>
             ✔ App Usage Guide
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.card, { backgroundColor: colors.tabBg }]}>
+        <TouchableOpacity style={[styles.card, { backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff' }]}>
           <Text style={[styles.cardText, { color: colors.text }]}>
             ✔ Troubleshooting Tips
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.card, { backgroundColor: colors.tabBg }]}>
+        <TouchableOpacity style={[styles.card, { backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff' }]}>
           <Text style={[styles.cardText, { color: colors.text }]}>
             ✔ Contact Support
           </Text>
         </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+      </ScrollView>
+    </View>
   );
 };
 
 export default HelpSupport;
+
 const styles = StyleSheet.create({
-  safe: {
+  container: {
     flex: 1,
   },
 
   header: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: rs(20),
+    justifyContent: 'space-between',
+    paddingHorizontal: rs(16),
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
   },
 
   backIcon: {
@@ -109,21 +121,20 @@ const styles = StyleSheet.create({
   },
 
   headerTitle: {
-    flex: 1,
-    textAlign: 'center',
     fontSize: rs(18),
-    fontWeight: '600',
+    fontFamily: getFontFamily('Poppins', 'SemiBold'),
+    fontWeight: getFontWeight('600'),
   },
 
-  content: {
-    flex: 1,
-    paddingHorizontal: rs(18),
-    paddingTop: rs(20),
+  scrollContent: {
+    padding: rs(16),
+    paddingBottom: rs(40),
   },
 
   title: {
     fontSize: rs(26),
-    fontWeight: '700',
+    fontFamily: getFontFamily('Poppins', 'Bold'),
+    fontWeight: getFontWeight('700'),
     marginBottom: rs(10),
   },
 
@@ -131,17 +142,19 @@ const styles = StyleSheet.create({
     fontSize: rs(15),
     lineHeight: rs(22),
     marginBottom: rs(24),
+    fontFamily: getFontFamily('Poppins', 'Regular'),
   },
 
   card: {
-    borderRadius: rs(14),
+    borderRadius: rs(12),
     paddingVertical: rs(16),
     paddingHorizontal: rs(18),
-    marginBottom: rs(14),
+    marginBottom: rs(12),
   },
 
   cardText: {
     fontSize: rs(16),
-    fontWeight: '600',
+    fontFamily: getFontFamily('Poppins', 'SemiBold'),
+    fontWeight: getFontWeight('600'),
   },
 });

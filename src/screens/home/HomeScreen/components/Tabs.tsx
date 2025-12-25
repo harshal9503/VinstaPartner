@@ -40,21 +40,21 @@ export default function Tabs({ activeTab, onTabChange }: TabsProps) {
 
 const styles = StyleSheet.create({
   tabsWrapper: {
-    marginBottom: 24,
-    marginTop: Platform.OS === 'ios' ? 0 : -10,
+    marginBottom: 10,
+    marginTop: Platform.OS === 'ios' ? 0 : 0,
   },
   tabs: {
     flexDirection: 'row',
     backgroundColor: '#F4F4F4',
     borderRadius: 12,
-    marginHorizontal: 24,
-    padding: 4,
+    marginHorizontal: 20,
+    padding: 10,
   },
   tab: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 15,
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 10,
   },
   activeTab: {
     backgroundColor: COLORS.primary || '#FF6B35',

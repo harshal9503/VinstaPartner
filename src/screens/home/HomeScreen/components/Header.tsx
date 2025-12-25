@@ -18,13 +18,13 @@ export default function Header() {
             style={styles.dropdownIcon}
           />
         </View>
-        <Text style={styles.locationValue}>4102 Pretty View Lane</Text>
+        <Text style={styles.locationValue}>4102 Vijay nagar Indore</Text>
       </View>
 
       <View style={styles.userRow}>
         <View style={styles.userInfo}>
           <Text style={styles.greeting}>Hey Good Morning</Text>
-          <Text style={styles.userName}>Ronak Sharma</Text>
+          <Text style={styles.userName}>Harshal Sharma</Text>
         </View>
         <Image
           source={require('../../../../assets/user1.png')}

@@ -88,7 +88,7 @@ const RatingsReviews = () => {
           style={[
             styles.summaryCard,
             {
-              backgroundColor: theme === 'dark' ? '#1E1E1E' : COLORS.white,
+              backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff',
             },
           ]}
         >
@@ -105,7 +105,7 @@ const RatingsReviews = () => {
             style={[
               styles.reviewCard,
               {
-                backgroundColor: theme === 'dark' ? '#1E1E1E' : COLORS.white,
+                backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff',
               },
             ]}
           >
@@ -131,6 +131,7 @@ const RatingsReviews = () => {
 };
 
 export default RatingsReviews;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -166,14 +167,9 @@ const styles = StyleSheet.create({
   /* ---------- SUMMARY ---------- */
   summaryCard: {
     padding: rs(20),
-    borderRadius: rs(16),
+    borderRadius: rs(12),
     alignItems: 'center',
-    marginBottom: rs(20),
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.12,
-    shadowRadius: 6,
+    marginBottom: rs(12),
   },
 
   avgRating: {
@@ -193,13 +189,8 @@ const styles = StyleSheet.create({
   /* ---------- REVIEW CARD ---------- */
   reviewCard: {
     padding: rs(16),
-    borderRadius: rs(14),
-    marginBottom: rs(14),
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
+    borderRadius: rs(12),
+    marginBottom: rs(12),
   },
 
   reviewHeader: {
@@ -236,7 +227,7 @@ const styles = StyleSheet.create({
   },
 
   replyText: {
-    color: COLORS.white,
+    color:'white',
     fontSize: rs(13),
     fontFamily: getFontFamily('Poppins', 'Medium'),
     fontWeight: getFontWeight('500'),

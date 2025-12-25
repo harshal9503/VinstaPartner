@@ -36,7 +36,7 @@ const TAB_BAR_HEIGHT = Platform.OS === 'android' ? rs(90) : rs(70);
 const SECTIONS = [
   { title: 'Restaurant Information', icon: require('../../../assets/profile2.png'),
      route: 'RestroInformation', key: 'restaurant' },
-  { title: 'Delivery Partners', icon: require('../../../assets/delivery.png'), route: 
+  { title: 'Delivery Partners', icon: require('../../../assets/expressdelivery.png'), route: 
     'DeliveryPartners', key: 'delivery' },
   { title: 'Order Management', icon: require('../../../assets/order.png'), 
     route: 'OrderManagements', key: 'orders' },
@@ -54,8 +54,8 @@ const SECTIONS = [
      route: 'NotiandPrefere', key: 'notifications' },
   { title: 'Help & Support', icon: require('../../../assets/support.png'), route: 
     'HelpandSupport', key: 'support' },
-  { title: 'Profile Actions', icon: require('../../../assets/settings1.png'), route:
-     'ProfileActions', key: 'actions' },
+  // { title: 'Profile Actions', icon: require('../../../assets/settings1.png'), route:
+  //    'ProfileActions', key: 'actions' },
 ];
 
 const RestaurantProfileScreen = ({ navigation }: any) => {
@@ -83,7 +83,7 @@ const RestaurantProfileScreen = ({ navigation }: any) => {
           {/* HEADER */}
           <View style={styles.profileRow}>
             <Image
-              source={require('../../../assets/user.png')}
+              source={require('../../../assets/user1.png')}
               style={styles.profileImage}
             />
             <View>
@@ -91,7 +91,7 @@ const RestaurantProfileScreen = ({ navigation }: any) => {
                 Spice Hub Restaurant
               </Text>
               <Text style={[styles.subText, { color: colors.inactive }]}>
-                Owner: Rahul Verma
+                Owner: Harshal Sharma
               </Text>
               <Text style={[styles.subText, { color: colors.inactive }]}>
                 +91 9876543210
@@ -99,19 +99,54 @@ const RestaurantProfileScreen = ({ navigation }: any) => {
             </View>
           </View>
 
-          {/* SECTIONS */}
-          {SECTIONS.map((item, index) => (
+          {/* SECTION CONTAINER */}
+          <View style={styles.sectionContainer}>
+            {/* SECTIONS */}
+            {SECTIONS.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                activeOpacity={0.75}
+                onPress={() =>
+                  navigation.navigate(item.route, {
+                    type: item.key,
+                    title: item.title,
+                  })
+                }
+              >
+                <View style={[
+                  styles.menuRow,
+                  index === SECTIONS.length - 1 && styles.lastMenuItem
+                ]}>
+                  <View style={styles.menuLeft}>
+                    <View
+                      style={[
+                        styles.menuIconWrap,
+                        { backgroundColor: colors.tabBg },
+                      ]}
+                    >
+                      <Image
+                        source={item.icon}
+                        style={[
+                          styles.menuIcon,
+                          { tintColor: colors.primary },
+                        ]}
+                      />
+                    </View>
+                    <Text style={[styles.menuText, { color: colors.text }]}>
+                      {item.title}
+                    </Text>
+                  </View>
+                  <Text style={[styles.arrow, { color: colors.inactive }]}>›</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+
+            {/* LOGOUT SECTION - Same style as other sections */}
             <TouchableOpacity
-              key={index}
               activeOpacity={0.75}
-              onPress={() =>
-                navigation.navigate(item.route, {
-                  type: item.key,
-                  title: item.title,
-                })
-              }
+              onPress={() => setShowPopup(true)}
             >
-              <View style={styles.menuRow}>
+              <View style={[styles.menuRow, styles.logoutRow]}>
                 <View style={styles.menuLeft}>
                   <View
                     style={[
@@ -120,31 +155,21 @@ const RestaurantProfileScreen = ({ navigation }: any) => {
                     ]}
                   >
                     <Image
-                      source={item.icon}
+                      source={require('../../../assets/logout.png')}
                       style={[
                         styles.menuIcon,
-                        { tintColor: colors.primary },
+                        { tintColor: '#FF5252' }, // Red color for logout icon
                       ]}
                     />
                   </View>
-                  <Text style={[styles.menuText, { color: colors.text }]}>
-                    {item.title}
+                  <Text style={[styles.menuText, { color: '#FF5252' }]}>
+                    Logout
                   </Text>
                 </View>
                 <Text style={[styles.arrow, { color: colors.inactive }]}>›</Text>
               </View>
             </TouchableOpacity>
-          ))}
-
-          {/* LOGOUT */}
-          <TouchableOpacity
-            style={styles.logoutRow}
-            onPress={() => setShowPopup(true)}
-          >
-            <Text style={[styles.logoutText, { color: colors.primary }]}>
-              Logout
-            </Text>
-          </TouchableOpacity>
+          </View>
 
         </ScrollView>
       </View>
@@ -153,8 +178,21 @@ const RestaurantProfileScreen = ({ navigation }: any) => {
       <Modal transparent visible={showPopup} animationType="fade">
         <View style={styles.popupOverlay}>
           <View style={[styles.popupBox, { backgroundColor: colors.tabBg }]}>
-            <Text style={[styles.popupText, { color: colors.text }]}>
-              Are you sure you want to logout?
+            <View style={styles.popupIconContainer}>
+              <View style={[styles.popupIconWrap, { backgroundColor: '#FFEBEE' }]}>
+                <Image
+                  source={require('../../../assets/logout.png')}
+                  style={[styles.popupIcon, { tintColor: '#FF5252' }]}
+                />
+              </View>
+            </View>
+            
+            <Text style={[styles.popupTitle, { color: colors.text }]}>
+              Logout
+            </Text>
+            
+            <Text style={[styles.popupText, { color: colors.textSecondary }]}>
+              Are you sure you want to logout from your account?
             </Text>
 
             <View style={styles.popupButtons}>
@@ -162,7 +200,7 @@ const RestaurantProfileScreen = ({ navigation }: any) => {
                 onPress={() => setShowPopup(false)}
                 style={[styles.popupBtn, styles.cancelBtn]}
               >
-                <Text>Cancel</Text>
+                <Text style={[styles.cancelBtnText, { color: colors.text }]}>Cancel</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -170,9 +208,9 @@ const RestaurantProfileScreen = ({ navigation }: any) => {
                   await logout();
                   navigation.replace('Login');
                 }}
-                style={[styles.popupBtn, { backgroundColor: colors.primary }]}
+                style={[styles.popupBtn, styles.confirmBtn]}
               >
-                <Text style={{ color: '#fff' }}>OK</Text>
+                <Text style={styles.confirmBtnText}>Logout</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -188,61 +226,100 @@ export default RestaurantProfileScreen;
 /* ================= STYLES ================= */
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { 
+    flex: 1 
+  },
 
   profileRow: {
     flexDirection: 'row',
     paddingHorizontal: rs(20),
-    paddingVertical: rs(16),
+    paddingVertical: rs(20),
     alignItems: 'center',
+    marginBottom: rs(8),
   },
+  
   profileImage: {
     width: rs(70),
     height: rs(70),
     borderRadius: rs(35),
     marginRight: rs(15),
   },
+  
   name: {
     fontSize: rs(18),
     fontFamily: getFontFamily('Bold'),
     fontWeight: getFontWeight('Bold'),
   },
+  
   subText: {
     fontSize: rs(14),
     fontFamily: getFontFamily('Regular'),
     marginTop: rs(2),
   },
 
+  sectionContainer: {
+    marginTop: rs(0),
+    marginHorizontal: rs(8),
+    borderRadius: rs(16),
+    backgroundColor: '#FFFFFF',
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+
   menuRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: rs(14),
-    paddingHorizontal: rs(18),
+    paddingVertical: rs(7),
+    paddingHorizontal: rs(8),
+    borderBottomWidth: 1,
+    borderBottomColor: '#F5F5F5',
   },
-  menuLeft: { flexDirection: 'row', alignItems: 'center' },
+
+  lastMenuItem: {
+    borderBottomWidth: 0,
+  },
+
+  menuLeft: { 
+    flexDirection: 'row', 
+    alignItems: 'center' 
+  },
+  
   menuIconWrap: {
-    width: rs(42),
-    height: rs(42),
-    borderRadius: rs(14),
+    width: rs(40),
+    height: rs(40),
+    borderRadius: rs(12),
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: rs(14),
   },
-  menuIcon: { width: rs(20), height: rs(20) },
-  menuText: {
-    fontSize: rs(16),
-    fontFamily: getFontFamily('Medium'),
+  
+  menuIcon: { 
+    width: rs(20), 
+    height: rs(20),
+    resizeMode: 'contain',
   },
-  arrow: { fontSize: rs(26) },
+  
+  menuText: {
+    fontSize: rs(15),
+    fontFamily: getFontFamily('Medium'),
+    fontWeight: getFontWeight('500'),
+  },
+  
+  arrow: { 
+    fontSize: rs(26),
+    marginLeft: rs(8),
+  },
 
   logoutRow: {
-    paddingVertical: rs(22),
-    alignItems: 'center',
-  },
-  logoutText: {
-    fontSize: rs(16),
-    fontFamily: getFontFamily('SemiBold'),
+    borderBottomWidth: 0,
   },
 
   popupOverlay: {
@@ -250,29 +327,86 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: rs(20),
   },
+  
   popupBox: {
-    width: '85%',
-    borderRadius: rs(14),
-    padding: rs(22),
+    width: '100%',
+    maxWidth: rs(320),
+    borderRadius: rs(20),
+    padding: rs(24),
+    alignItems: 'center',
   },
-  popupText: {
-    fontSize: rs(16),
+  
+  popupIconContainer: {
+    marginBottom: rs(16),
+  },
+  
+  popupIconWrap: {
+    width: rs(60),
+    height: rs(60),
+    borderRadius: rs(30),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
+  popupIcon: {
+    width: rs(28),
+    height: rs(28),
+    resizeMode: 'contain',
+  },
+  
+  popupTitle: {
+    fontSize: rs(20),
+    fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('600'),
+    marginBottom: rs(8),
     textAlign: 'center',
-    marginBottom: rs(22),
-    fontFamily: getFontFamily('Medium'),
   },
+  
+  popupText: {
+    fontSize: rs(14),
+    textAlign: 'center',
+    marginBottom: rs(24),
+    fontFamily: getFontFamily('Regular'),
+    fontWeight: getFontWeight('400'),
+    lineHeight: rs(20),
+  },
+  
   popupButtons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '100%',
+    gap: rs(12),
   },
+  
   popupBtn: {
-    paddingVertical: rs(12),
-    minWidth: rs(110),
+    flex: 1,
+    paddingVertical: rs(14),
     alignItems: 'center',
-    borderRadius: rs(10),
+    borderRadius: rs(12),
   },
+  
   cancelBtn: {
-    backgroundColor: COLORS.inactive,
+    backgroundColor: '#F5F5F5',
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  
+  cancelBtnText: {
+    fontSize: rs(15),
+    fontFamily: getFontFamily('Medium'),
+    fontWeight: getFontWeight('500'),
+  },
+  
+  confirmBtn: {
+    backgroundColor: '#FF5252',
+  },
+  
+  confirmBtnText: {
+    color: '#FFFFFF',
+    fontSize: rs(15),
+    fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('600'),
   },
 });

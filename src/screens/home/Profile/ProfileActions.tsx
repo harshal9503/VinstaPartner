@@ -78,12 +78,8 @@ const ProfileActions = () => {
             style={[
               styles.actionCard,
               {
-                backgroundColor:
-                  theme === 'dark' ? '#1E1E1E' : COLORS.white,
-                borderColor:
-                  item.title === 'Logout'
-                    ? COLORS.error
-                    : COLORS.border,
+                backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff',
+                borderColor: item.title === 'Logout' ? COLORS.error : COLORS.border,
               },
             ]}
             onPress={item.onPress}
@@ -93,10 +89,7 @@ const ProfileActions = () => {
               style={[
                 styles.actionText,
                 {
-                  color:
-                    item.title === 'Logout'
-                      ? COLORS.error
-                      : colors.text,
+                  color: item.title === 'Logout' ? COLORS.error : colors.text,
                 },
               ]}
             >
@@ -110,6 +103,7 @@ const ProfileActions = () => {
 };
 
 export default ProfileActions;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -147,22 +141,13 @@ const styles = StyleSheet.create({
   actionCard: {
     paddingVertical: rs(18),
     paddingHorizontal: rs(16),
-    borderRadius: rs(14),
-    marginBottom: rs(14),
+    borderRadius: rs(12),
+    marginBottom: rs(12),
     borderWidth: 1,
-
-    // iOS shadow
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-
-    // Android shadow
-    elevation: 3,
   },
 
   actionText: {
-    fontSize: rs(16),
+    fontSize: rs(15),
     fontFamily: getFontFamily('Poppins', 'Medium'),
     fontWeight: getFontWeight('500'),
   },

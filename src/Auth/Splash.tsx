@@ -14,7 +14,7 @@ export default function Splash({ navigation }) {
         if (isLoggedIn) {
           navigation.replace('Home');
         } else {
-          navigation.replace('Home');
+          navigation.replace('Login');
         }
       }, 2000);
 

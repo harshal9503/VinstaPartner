@@ -15,7 +15,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { COLORS } from '../../../theme/colors';
-import { getFontFamily } from '../../../utils/fontHelper';
+import { getFontFamily, getFontWeight } from '../../../utils/fontHelper';
 import EditPopup from './EditPopup';
 import ItemDetailsPopup from './ItemDetailsPopup';
 
@@ -39,8 +39,6 @@ export default function AddScreen() {
   const navigation = useNavigation();
 
   const statusBarHeight = getStatusBarHeight();
-
-  // Bottom navigation bar height (adjust based on your bottom nav height)
   const BOTTOM_NAV_HEIGHT = Platform.OS === 'ios' ? 83 : 70;
 
   const handleEditPress = (item: any) => {
@@ -76,20 +74,16 @@ export default function AddScreen() {
 
   const handlePrintLabel = () => {
     console.log('Print label for:', selectedItem);
-    // Add print label logic here
   };
 
   const handleDeleteItem = (itemId: number) => {
     console.log('Delete item:', itemId);
-    // Add delete logic here
   };
 
   const handleAddFoodItem = () => {
     console.log('Add food item pressed');
-    // Navigate to add food item screen or show add modal
   };
 
-  // Filter items based on active filter
   const filteredItems = ITEMS.filter(item => {
     if (activeFilter === 'All') return true;
     if (activeFilter === 'In-stock') return item.status === 'In-stock';
@@ -97,7 +91,6 @@ export default function AddScreen() {
     return true;
   });
 
-  // Search filter
   const searchedItems = filteredItems.filter(item =>
     item.name.toLowerCase().includes(searchText.toLowerCase()) ||
     item.tag.toLowerCase().includes(searchText.toLowerCase())
@@ -110,7 +103,6 @@ export default function AddScreen() {
         backgroundColor={COLORS.secondary}
       />
 
-      {/* Edit Popup Modal */}
       <EditPopup
         visible={showEditPopup}
         onClose={handleCloseEditPopup}
@@ -118,7 +110,6 @@ export default function AddScreen() {
         item={selectedItem}
       />
 
-      {/* Item Details Popup Modal */}
       <ItemDetailsPopup
         visible={showItemDetailsPopup}
         onClose={handleCloseItemDetailsPopup}
@@ -127,30 +118,16 @@ export default function AddScreen() {
         item={selectedItem}
       />
 
-      {/* ===== HEADER (ANDROID + IOS SAFE) ===== */}
+      {/* ===== HEADER - EXACTLY LIKE FOOD SCREEN ===== */}
       <View style={[styles.headerWrapper, { paddingTop: statusBarHeight }]}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-            {/* <Image
-              source={require('../../../assets/back.png')}
-              style={styles.backIcon}
-            /> */}
-          </TouchableOpacity>
-
-          <Text style={styles.headerTitle}>Shop menu</Text>
-
-          <View style={{ width: 32 }} />
-        </View>
+        <Text style={styles.headerTitle}>Shop menu</Text>
       </View>
 
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[styles.scroll, { paddingBottom: BOTTOM_NAV_HEIGHT + 40 }]}
       >
-        {/* SEARCH TITLE */}
-        <Text style={styles.searchTitle}>Search food</Text>
-
-        {/* SEARCH INPUT */}
+        {/* SEARCH - EXACTLY LIKE FOOD SCREEN */}
         <View style={styles.searchBox}>
           <Image
             source={require('../../../assets/search.png')}
@@ -165,7 +142,6 @@ export default function AddScreen() {
           />
         </View>
 
-        {/* ADD BUTTON */}
         <TouchableOpacity style={styles.addFoodBtn} onPress={handleAddFoodItem}>
           <Image
             source={require('../../../assets/plus.png')}
@@ -174,7 +150,6 @@ export default function AddScreen() {
           <Text style={styles.addFoodText}>Add food items</Text>
         </TouchableOpacity>
 
-        {/* FILTERS */}
         <View style={styles.filters}>
           {FILTERS.map(item => (
             <TouchableOpacity
@@ -197,10 +172,8 @@ export default function AddScreen() {
           ))}
         </View>
 
-        {/* TOTAL */}
         <Text style={styles.totalText}>Total item's ({searchedItems.length})</Text>
 
-        {/* ITEMS */}
         {searchedItems.map((item) => (
           <View key={item.id} style={styles.card}>
             <View style={styles.cardTop}>
@@ -230,7 +203,6 @@ export default function AddScreen() {
               </View>
             </View>
 
-            {/* META */}
             <View style={styles.metaRow}>
               <View>
                 <Text style={styles.metaLabel}>SKU</Text>
@@ -243,7 +215,6 @@ export default function AddScreen() {
               </View>
             </View>
 
-            {/* BUTTONS */}
             <View style={styles.cardBtns}>
               <TouchableOpacity
                 style={styles.editBtn}
@@ -262,7 +233,6 @@ export default function AddScreen() {
           </View>
         ))}
 
-        {/* Empty State */}
         {searchedItems.length === 0 && (
           <View style={styles.emptyContainer}>
             <Image
@@ -278,8 +248,6 @@ export default function AddScreen() {
   );
 }
 
-/* ================= STYLES ================= */
-
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
@@ -288,53 +256,32 @@ const styles = StyleSheet.create({
 
   scroll: {
     paddingHorizontal: 0,
-    paddingTop: 10,
+    paddingTop: width * 0.03, // Matches FoodScreen scroll paddingTop
   },
 
   headerWrapper: {
+    alignItems: 'center', // EXACTLY LIKE FOOD SCREEN
+    paddingVertical: 0,  // EXACTLY LIKE FOOD SCREEN
     backgroundColor: COLORS.secondary,
-  },
-
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: width * 0.05,
-    paddingBottom: 12,
-    paddingTop:5,
-    justifyContent: 'space-between',
-  },
-
-  backBtn: {
-    padding: 6,
-  },
-
-  backIcon: {
-    width: 22,
-    height: 22,
   },
 
   headerTitle: {
     fontSize: 18,
-    fontFamily: getFontFamily('SemiBold'),
     color: COLORS.text,
-  },
-
-  searchTitle: {
-    marginHorizontal: width * 0.05,
-    fontSize: 16,
     fontFamily: getFontFamily('SemiBold'),
-    marginTop: 10,
-    marginBottom: 10,
+    fontWeight: getFontWeight('SemiBold'),
   },
 
+  // SEARCH - EXACTLY LIKE FOOD SCREEN
   searchBox: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F3F3F3',
     marginHorizontal: width * 0.05,
-    borderRadius: 26,
+    marginTop: width * 0.0, // EXACTLY LIKE FOOD SCREEN
+    borderRadius: 10,
+    height: 52,
     paddingHorizontal: 16,
-    paddingVertical: 14,
   },
 
   searchIcon: {
@@ -347,14 +294,19 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 14,
+    color: COLORS.text,
     fontFamily: getFontFamily('Regular'),
+    fontWeight: getFontWeight('Regular'),
+    paddingVertical: 0,
+    textAlignVertical: 'center',
+    includeFontPadding: false,
   },
 
   addFoodBtn: {
     marginHorizontal: width * 0.05,
     marginTop: 18,
     backgroundColor: COLORS.primary,
-    borderRadius: 16,
+    borderRadius: 10,
     paddingVertical: 16,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -372,6 +324,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 15,
     fontFamily: getFontFamily('Bold'),
+    fontWeight: getFontWeight('Bold'),
   },
 
   filters: {
@@ -379,7 +332,7 @@ const styles = StyleSheet.create({
     marginHorizontal: width * 0.05,
     marginTop: 18,
     backgroundColor: '#F5F5F5',
-    borderRadius: 18,
+    borderRadius: 10,
     padding: 4,
   },
 
@@ -387,7 +340,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     alignItems: 'center',
-    borderRadius: 14,
+    borderRadius: 8,
   },
 
   activeFilter: {
@@ -397,12 +350,14 @@ const styles = StyleSheet.create({
   filterText: {
     fontSize: 14,
     fontFamily: getFontFamily('Medium'),
+    fontWeight: getFontWeight('Medium'),
     color: COLORS.text,
   },
 
   activeFilterText: {
     color: '#fff',
     fontFamily: getFontFamily('Bold'),
+    fontWeight: getFontWeight('Bold'),
   },
 
   totalText: {
@@ -410,11 +365,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 15,
     fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('SemiBold'),
+    color: COLORS.text,
   },
 
   card: {
     backgroundColor: '#fff',
-    borderRadius: 20,
+    borderRadius: 10,
     marginHorizontal: width * 0.05,
     marginTop: 16,
     padding: 16,
@@ -427,7 +384,7 @@ const styles = StyleSheet.create({
   foodImg: {
     width: 68,
     height: 68,
-    borderRadius: 14,
+    borderRadius: 10,
   },
 
   cardCenter: {
@@ -440,7 +397,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 4,
-    borderRadius: 12,
+    borderRadius: 10,
     marginBottom: 6,
   },
 
@@ -454,11 +411,13 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 12,
     fontFamily: getFontFamily('Medium'),
+    fontWeight: getFontWeight('Medium'),
   },
 
   foodName: {
     fontSize: 15,
     fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('SemiBold'),
   },
 
   tagText: {
@@ -466,6 +425,7 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
     marginTop: 2,
     fontFamily: getFontFamily('Medium'),
+    fontWeight: getFontWeight('Medium'),
   },
 
   cardRight: {
@@ -481,6 +441,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 16,
     fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('SemiBold'),
   },
 
   metaRow: {
@@ -493,11 +454,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#777',
     fontFamily: getFontFamily('Regular'),
+    fontWeight: getFontWeight('Regular'),
   },
 
   metaValue: {
     fontSize: 13,
     fontFamily: getFontFamily('Medium'),
+    fontWeight: getFontWeight('Medium'),
   },
 
   cardBtns: {
@@ -509,7 +472,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 1,
     borderColor: '#E0E0E0',
-    borderRadius: 14,
+    borderRadius: 10,
     paddingVertical: 12,
     alignItems: 'center',
     marginRight: 10,
@@ -518,12 +481,13 @@ const styles = StyleSheet.create({
   editText: {
     fontSize: 14,
     fontFamily: getFontFamily('Bold'),
+    fontWeight: getFontWeight('Bold'),
   },
 
   viewBtn: {
     flex: 1,
     backgroundColor: COLORS.primary,
-    borderRadius: 14,
+    borderRadius: 10,
     paddingVertical: 12,
     alignItems: 'center',
   },
@@ -532,6 +496,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontFamily: getFontFamily('Bold'),
+    fontWeight: getFontWeight('Bold'),
   },
 
   emptyContainer: {
@@ -551,6 +516,7 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 18,
     fontFamily: getFontFamily('SemiBold'),
+    fontWeight: getFontWeight('SemiBold'),
     color: COLORS.text,
     marginBottom: 8,
   },
@@ -558,6 +524,7 @@ const styles = StyleSheet.create({
   emptySubText: {
     fontSize: 14,
     fontFamily: getFontFamily('Regular'),
+    fontWeight: getFontWeight('Regular'),
     color: '#666',
     textAlign: 'center',
   },

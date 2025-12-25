@@ -26,7 +26,7 @@ const PayoutsAndEarnings = () => {
   const navigation = useNavigation<any>();
 
   const payoutData = [
-    { label: "Today’s Earnings", value: '₹1,250' },
+    { label: "Today's Earnings", value: '₹1,250' },
     { label: 'Weekly / Monthly Earnings', value: '₹8,750 / ₹32,400' },
     { label: 'Cash Orders Summary', value: '₹4,200 (12 Orders)' },
     { label: 'Online Payment Summary', value: '₹28,200 (68 Orders)' },
@@ -80,14 +80,13 @@ const PayoutsAndEarnings = () => {
             style={[
               styles.infoCard,
               {
-                backgroundColor: theme === 'dark' ? '#1E1E1E' : COLORS.white,
+                backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff',
               },
             ]}
           >
             <Text style={[styles.label, { color: COLORS.primary }]}>
               {item.label}
             </Text>
-
             <Text style={[styles.value, { color: colors.text }]}>
               {item.value}
             </Text>
@@ -104,6 +103,7 @@ const PayoutsAndEarnings = () => {
 };
 
 export default PayoutsAndEarnings;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -138,26 +138,19 @@ const styles = StyleSheet.create({
 
   infoCard: {
     padding: rs(16),
-    borderRadius: rs(14),
-    marginBottom: rs(14),
-
-    // ✅ SHADOW FIX (Android + iOS)
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.12,
-    shadowRadius: 6,
+    borderRadius: rs(12),
+    marginBottom: rs(12),
   },
 
   label: {
-    fontSize: rs(13),
+    fontSize: rs(15),
     marginBottom: rs(6),
     fontFamily: getFontFamily('Poppins', 'Medium'),
     fontWeight: getFontWeight('500'),
   },
 
   value: {
-    fontSize: rs(16),
+    fontSize: rs(15),
     fontFamily: getFontFamily('Poppins', 'SemiBold'),
     fontWeight: getFontWeight('600'),
   },
@@ -168,11 +161,10 @@ const styles = StyleSheet.create({
     paddingVertical: rs(14),
     borderRadius: rs(12),
     alignItems: 'center',
-    elevation: 2,
   },
 
   actionText: {
-    color: COLORS.white,
+    color:'white',
     fontSize: rs(16),
     fontFamily: getFontFamily('Poppins', 'SemiBold'),
     fontWeight: getFontWeight('600'),

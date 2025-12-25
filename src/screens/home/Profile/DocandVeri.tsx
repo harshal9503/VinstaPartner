@@ -79,13 +79,14 @@ const DocumentsVerification = () => {
             style={[
               styles.infoCard,
               {
-                backgroundColor:
-                  theme === 'dark' ? '#1E1E1E' : COLORS.white,
+                backgroundColor: theme === 'dark' ? '#1E1E1E' : '#fff',
               },
             ]}
           >
             <View>
-              <Text style={styles.label}>{item.label}</Text>
+              <Text style={[styles.label, { color: COLORS.primary }]}>
+                {item.label}
+              </Text>
               <Text style={[styles.value, { color: colors.text }]}>
                 {item.value}
               </Text>
@@ -102,6 +103,7 @@ const DocumentsVerification = () => {
 };
 
 export default DocumentsVerification;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -141,23 +143,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: rs(16),
-    borderRadius: rs(14),
-    marginBottom: rs(14),
-
-    // Shadow (iOS)
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-
-    // Shadow (Android)
-    elevation: 4,
+    borderRadius: rs(12),
+    marginBottom: rs(12),
   },
 
   label: {
-    fontSize: rs(13),
+    fontSize: rs(15),
     marginBottom: rs(6),
-    color: COLORS.primary,
     fontFamily: getFontFamily('Poppins', 'Medium'),
     fontWeight: getFontWeight('500'),
   },
@@ -176,7 +168,7 @@ const styles = StyleSheet.create({
   },
 
   uploadText: {
-    color: COLORS.white,
+    color:'white',
     fontSize: rs(13),
     fontFamily: getFontFamily('Poppins', 'Medium'),
     fontWeight: getFontWeight('500'),
