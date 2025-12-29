@@ -8,6 +8,7 @@ import {
   StatusBar,
   Dimensions,
   Platform,
+  Linking,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ThemeContext } from '../../../theme/ThemeContext';
@@ -35,10 +36,21 @@ const TrackOrderMap = () => {
   const markerSize = width * 0.075; // ✅ SAME for pickup & drop
   const boySize = width * 0.14;
   const horizontalLine = width * 0.18;
+const HEADER_HEIGHT = 56; // ya jitni tumhari header actual height hai
+const HEADER_GAP = 40;    // jitna gap chahiye header aur routes ke beech
+const ROUTE_TOP_OFFSET = HEADER_HEIGHT + HEADER_GAP;
 
-  /* 🔥 HEADER SAFE OFFSET */
-  const ROUTE_TOP_OFFSET = STATUS_BAR_HEIGHT + 55;
+  /* handle call */
+ const handleCall = () => {
+    const phoneNumber = '+911234567890';
+    Linking.openURL(`tel:${phoneNumber}`).catch(err => {
+      console.log('Error making phone call:', err);
+    });
+  };
 
+   const handleMessage = () => {
+    navigation.navigate('Chat');
+  };
   return (
     <View style={styles.container}>
       <StatusBar
@@ -66,88 +78,87 @@ const TrackOrderMap = () => {
 
         {/* ZIG ZAG ROUTE */}
         <View style={StyleSheet.absoluteFill}>
-          {/* Vertical 1 */}
-          <View
-            style={[
-              styles.routeLine,
-              {
-                top: ROUTE_TOP_OFFSET,
-                left: width / 2 - lineWidth / 2,
-                height: MAP_HEIGHT * 0.22,
-                width: lineWidth,
-              },
-            ]}
-          />
+  {/* Vertical 1 */}
+  <View
+    style={[
+      styles.routeLine,
+      {
+        top: ROUTE_TOP_OFFSET,
+        left: width / 2 - lineWidth / 2,
+        height: MAP_HEIGHT * 0.28,
+        width: lineWidth,
+      },
+    ]}
+  />
 
-          {/* Horizontal */}
-          <View
-            style={[
-              styles.routeLine,
-              {
-                top: ROUTE_TOP_OFFSET + MAP_HEIGHT * 0.22,
-                left: width / 2 - horizontalLine,
-                height: lineWidth,
-                width: horizontalLine,
-              },
-            ]}
-          />
+  {/* Horizontal */}
+  <View
+    style={[
+      styles.routeLine,
+      {
+        top: ROUTE_TOP_OFFSET + MAP_HEIGHT * 0.25,
+        left: width / 2 - horizontalLine,
+        height: lineWidth,
+        width: horizontalLine,
+      },
+    ]}
+  />
 
-          {/* Vertical 2 */}
-          <View
-            style={[
-              styles.routeLine,
-              {
-                top: ROUTE_TOP_OFFSET + MAP_HEIGHT * 0.22,
-                left: width / 2 - horizontalLine,
-                height: MAP_HEIGHT * 0.22,
-                width: lineWidth,
-              },
-            ]}
-          />
-        </View>
+  {/* Vertical 2 */}
+  <View
+    style={[
+      styles.routeLine,
+      {
+        top: ROUTE_TOP_OFFSET + MAP_HEIGHT * 0.25,
+        left: width / 2 - horizontalLine,
+        height: MAP_HEIGHT * 0.22,
+        width: lineWidth,
+      },
+    ]}
+  />
+</View>
+{/* PICKUP */}
+<Image
+  source={ICONS.pickup}
+  style={[
+    styles.marker,
+    {
+      top: ROUTE_TOP_OFFSET - markerSize / 2,
+      left: width / 2 - markerSize / 2,
+      width: markerSize,
+      height: markerSize,
+    },
+  ]}
+/>
 
-        {/* PICKUP */}
-        <Image
-          source={ICONS.pickup}
-          style={[
-            styles.marker,
-            {
-              top: ROUTE_TOP_OFFSET - markerSize / 2,
-              left: width / 2 - markerSize / 2,
-              width: markerSize,
-              height: markerSize,
-            },
-          ]}
-        />
+{/* DELIVERY BOY */}
+<Image
+  source={ICONS.boy}
+  style={[
+    styles.boy,
+    {
+      top: ROUTE_TOP_OFFSET + MAP_HEIGHT * 0.24,
+      left: width / 2 - boySize / 2,
+      width: boySize,
+      height: boySize,
+    },
+  ]}
+/>
 
-        {/* DELIVERY BOY */}
-        <Image
-          source={ICONS.boy}
-          style={[
-            styles.boy,
-            {
-              top: ROUTE_TOP_OFFSET + MAP_HEIGHT * 0.18,
-              left: width / 2 - boySize / 2,
-              width: boySize,
-              height: boySize,
-            },
-          ]}
-        />
-
-        {/* DROP */}
-        <Image
-          source={ICONS.drop}
-          style={[
-            styles.marker,
-            {
-              top: ROUTE_TOP_OFFSET + MAP_HEIGHT * 0.44,
-              left: width / 2 - horizontalLine - markerSize / 2,
-              width: markerSize,
-              height: markerSize,
-            },
-          ]}
-        />
-      </View>
+{/* DROP */}
+<Image
+  source={ICONS.drop}
+  style={[
+    styles.marker,
+    {
+      top: ROUTE_TOP_OFFSET + MAP_HEIGHT * 0.44,
+      left: width / 2 - horizontalLine - markerSize / 2,
+      width: markerSize,
+      height: markerSize,
+    },
+  ]}
+/>
+</View>
 
        {/* ================= ORDER CARD ================= */}
         <View style={styles.card}>
@@ -209,7 +220,7 @@ const TrackOrderMap = () => {
             </View>
 
             <View style={styles.actionRow}>
-              <TouchableOpacity style={styles.callBtn}>
+              <TouchableOpacity style={styles.callBtn}onPress={handleCall}>
                 <Image
                   source={require('../../../assets/call.png')}
                   style={styles.icon}
@@ -217,7 +228,7 @@ const TrackOrderMap = () => {
                 <Text style={styles.callText}>Call</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.msgBtn}>
+              <TouchableOpacity style={styles.msgBtn}onPress={handleMessage}>
                 <Image
                   source={require('../../../assets/message.png')}
                   style={styles.iconOrange}
@@ -262,7 +273,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     zIndex: 10,
-     paddingTop:10,
+     paddingTop:30,
      
   },
 backheader:{
@@ -293,6 +304,7 @@ paddingTop:20,
     position: 'absolute',
     resizeMode: 'contain',
     zIndex: 5,
+    paddingTop:10,
   },
 
   boy: {
