@@ -12,50 +12,46 @@ import { useNavigation } from '@react-navigation/native';
 import { COLORS } from '../../../theme/colors';
 
 
-const UnderShipmentCard = ({ item, onTrack }) => {
- const navigation = useNavigation<any>();
+const UnderShipmentCard = ({ item }) => {
+  const navigation = useNavigation<any>();
+
   return (
-   <View style={{ flex: 1 }}>
-  <ScrollView
-    showsVerticalScrollIndicator={false}
-    contentContainerStyle={{
-     
-    }}
-  >
-    {[1, 2,].map((_, index) => (
-      <View key={index} style={styles.card}>
-        <View style={styles.row}>
-          {/* IMAGE */}
-          <Image source={item.image} style={styles.image} />
+    <ScrollView
+  showsVerticalScrollIndicator={false}
+  contentContainerStyle={
+    { 
+      
+    }
+    }
+>
+    <View style={styles.card}>
+      <View style={styles.row}>
+        <Image source={item.image} style={styles.image} />
 
-          {/* INFO */}
-          <View style={styles.info}>
-            <Text style={styles.orderId}>#{item.id}</Text>
-            <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.meta}>
-              {item.date} · {item.items} Items
-            </Text>
-          </View>
+        <View style={styles.info}>
+          <Text style={styles.orderId}>#{item.id}</Text>
+          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.meta}>
+            {item.date} · {item.items} Items
+          </Text>
         </View>
-
-        {/* BUTTON */}
-        <TouchableOpacity
-          style={styles.trackBtn}
-          onPress={() =>
-            navigation.navigate('TrackOrder', { order: item })
-          }
-        >
-          <Text style={styles.trackText}>TRACK ORDER</Text>
-        </TouchableOpacity>
       </View>
-    ))}
-  </ScrollView>
-</View>
 
+      <TouchableOpacity
+        style={styles.trackBtn}
+        onPress={() =>
+          navigation.navigate('TrackOrder', { order: item })
+        }
+      >
+        <Text style={styles.trackText}>TRACK ORDER</Text>
+      </TouchableOpacity>
+    </View>
+    </ScrollView>
   );
 };
 
 export default UnderShipmentCard;
+
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#FFFFFF',

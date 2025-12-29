@@ -105,7 +105,8 @@ const styles = StyleSheet.create({
 
   container: {
     paddingHorizontal: width * 0.06,
-    paddingTop: Platform.OS === 'ios' ? 70 : 55,
+    paddingTop: Platform.OS === 'ios' ? 10 : 30,
+
     paddingBottom: 140,
   },
 

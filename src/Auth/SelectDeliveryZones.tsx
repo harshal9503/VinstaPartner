@@ -152,7 +152,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: width * 0.05,
-    paddingTop: Platform.OS === 'ios' ? 70 : 55,
+     paddingTop: Platform.OS === 'ios' ? 10 : 30,
+
   },
 
   backBtn: {
