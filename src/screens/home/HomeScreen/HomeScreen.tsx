@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1, // 🔑 makes whole screen scrollable
     paddingBottom: 40,
-    paddingTop: Platform.OS === 'android' ? 8 : 0,
+    paddingTop: Platform.OS === 'android' ? 20 : 0,
   },
 });
