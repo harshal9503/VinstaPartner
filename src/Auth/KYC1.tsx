@@ -10,6 +10,7 @@ import {
   ScrollView,
   Platform,
   Modal,
+  StatusBar,
 } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { COLORS } from '../theme/colors';
@@ -245,8 +246,9 @@ const styles = StyleSheet.create({
 
   container: {
     paddingHorizontal: width * 0.06,
-    paddingTop: Platform.OS === 'ios' ? 95 : 75,
-    paddingBottom: 130,
+  paddingTop: Platform.OS === 'ios' ? 10 : 30,
+
+   // paddingBottom: 130,
   },
 
   /* Header */

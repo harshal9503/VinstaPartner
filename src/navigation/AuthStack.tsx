@@ -46,6 +46,9 @@ import Ratingreview from '../screens/home/Profile/Ratingreview';
 import DocandVeri from '../screens/home/Profile/DocandVeri';
 import NotiandPrefere from '../screens/home/Profile/NotiandPrefere';
 import ProfileActions from '../screens/home/Profile/ProfileActions';
+//import ChatScreen from '../screens/home/OrdersTab/ChatScreen';
+//import ChatScreen from '../screens/home/OrdersTab/ChatScreen';
+import Chat from '../screens/home/OrdersTab/Chat';
 const Stack = createNativeStackNavigator();
 
 export default function AuthStack() {
@@ -104,7 +107,7 @@ export default function AuthStack() {
         component={Orderdetail}
       />
       <Stack.Screen name="TrackOrder" component={TrackOrder} />
-
+       <Stack.Screen name="Chat" component={Chat} />
 
       {/* //Orders file  */}
 

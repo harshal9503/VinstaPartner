@@ -22,6 +22,7 @@ export const LightColors = {
   background: COLORS.background,
   text: COLORS.textDark,
   primary: COLORS.primary,
+  headerBg: '#FFFFFF',
   tabBg: COLORS.secondary,
   inactive: COLORS.textLight,
 };
@@ -31,6 +32,7 @@ export const DarkColors = {
   background: '#121212',
   text: COLORS.secondary,
   primary: COLORS.primary,
+  headerBg: '#1E1E1E',
   tabBg: '#1E1E1E',
   inactive: '#777777',
 };

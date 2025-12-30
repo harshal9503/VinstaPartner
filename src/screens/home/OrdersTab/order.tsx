@@ -24,7 +24,7 @@ import { useNavigation } from '@react-navigation/native';
 import { getFontFamily, getFontWeight } from '../../../utils/fontHelper';
 
 
-const { width } = Dimensions.get('window');
+const {height, width } = Dimensions.get('window');
 const rs = (size: number) => (width / 375) * size;
 
 const HEADER_HEIGHT = rs(56);
@@ -255,6 +255,9 @@ const [noteText, setNoteText] = useState('');
       />
     )}
     showsVerticalScrollIndicator={false}
+    contentContainerStyle={{
+     paddingBottom: height * 0.14, // ✅ last item ke baad gap
+  }}
   />
 )}
 

@@ -165,7 +165,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.secondary,
     paddingHorizontal: width * 0.06,
-    paddingTop: Platform.OS === 'ios' ? 95 : 75,
+     paddingTop: Platform.OS === 'ios' ? 10 : 30,
+
   },
 
     header: {
@@ -254,7 +255,7 @@ const styles = StyleSheet.create({
   radioText: { fontSize: 15 },
 
   nextBtn: {
-    marginTop: 40,
+    marginTop: 20,
     alignSelf: 'flex-end',
     backgroundColor: COLORS.primary,
     paddingVertical: 14,

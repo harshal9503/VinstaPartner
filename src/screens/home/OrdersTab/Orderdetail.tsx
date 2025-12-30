@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Text,
@@ -8,32 +8,34 @@ import {
   TouchableOpacity,
   Platform,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import { ThemeContext } from '../../../theme/ThemeContext';
 import { getFontFamily } from '../../../utils/fontHelper';
 import { COLORS } from '../../../theme/colors';
 
-const { height } = Dimensions.get('window');
-
-// Responsive padding function
-const rp = (size: number) => (height / 812) * size;
+const { width } = Dimensions.get('window');
+const rs = (size: number) => (width / 375) * size;
 
 const OrderDetails = () => {
+  const { theme, colors } = useContext(ThemeContext); // ✅ correct
   const route = useRoute<any>();
   const { order } = route.params;
 
+  const styles = getStyles(colors);
+
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}
-    >
+   <ScrollView
+  showsVerticalScrollIndicator={false}
+  contentContainerStyle={[
+    styles.container,
+    { backgroundColor: colors.background, flexGrow: 1 },
+  ]}
+>
+
       {/* STATUS */}
-      <View
-        style={[
-          styles.statusBox,
-          { paddingTop: Platform.OS === 'android' ? rp(22) : rp(22) },
-        ]}
-      >
+      <View style={styles.statusBox}>
         <Text style={styles.statusText}>Order was delivered</Text>
       </View>
 
@@ -57,10 +59,10 @@ const OrderDetails = () => {
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Bill Summary</Text>
 
-        <BillRow label="Item Total" value="₹240.00" />
-        <BillRow label="GST & packaging" value="₹26.00" />
-        <BillRow label="Delivery Partner Fee" value="₹26.00" />
-        <BillRow label="Platform Fee" value="₹8.00" />
+        <BillRow label="Item Total" value="₹240.00" styles={styles} />
+        <BillRow label="GST & packaging" value="₹26.00" styles={styles} />
+        <BillRow label="Delivery Partner Fee" value="₹26.00" styles={styles} />
+        <BillRow label="Platform Fee" value="₹8.00" styles={styles} />
       </View>
 
       {/* PAYMENT */}
@@ -70,14 +72,22 @@ const OrderDetails = () => {
       </View>
 
       {/* INVOICE */}
-      <TouchableOpacity style={styles.invoiceBtn}>
+      <TouchableOpacity style={styles.invoiceBtn} activeOpacity={0.8}>
         <Text style={styles.invoiceText}>INVOICE</Text>
       </TouchableOpacity>
     </ScrollView>
   );
 };
 
-const BillRow = ({ label, value }: { label: string; value: string }) => (
+const BillRow = ({
+  label,
+  value,
+  styles,
+}: {
+  label: string;
+  value: string;
+  styles: any;
+}) => (
   <View style={styles.billRow}>
     <Text style={styles.billLabel}>{label}</Text>
     <Text style={styles.billValue}>{value}</Text>
@@ -86,105 +96,115 @@ const BillRow = ({ label, value }: { label: string; value: string }) => (
 
 export default OrderDetails;
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 40,
-    padding:10,
-    backgroundColor: '#F9FAFB',
-  },
+const getStyles = (colors: any) =>
+  StyleSheet.create({
+    container: {
+  paddingTop:
+  Platform.OS === 'android'
+    ? StatusBar.currentHeight ?? rs(44)
+    : rs(16),
+      paddingHorizontal: rs(12),
+      backgroundColor: colors.background,
+    },
 
-  statusBox: {
-    backgroundColor: '#FFF7ED',
-    paddingHorizontal: 12,
-    paddingBottom: 12,
-    borderRadius: 12,
-    marginBottom: 12,
-  },
+    statusBox: {
+      backgroundColor: colors.card,
+      padding: rs(14),
+      paddingTop:rs(50),
+      borderRadius: rs(14),
+      //marginBottom: rs(14),
+    },
 
-  statusText: {
-    color: '#EA580C',
-    fontFamily: getFontFamily('Medium'),
-  },
+    statusText: {
+      color: '#EA580C',
+      fontSize: rs(15),
+      fontFamily: getFontFamily('Medium'),
+    },
 
-  card: {
-    backgroundColor: '#FFF',
-    borderRadius: 16,
-    padding: 14,
-    marginBottom: 14,
-  },
+    card: {
+      backgroundColor: colors.card,
+      borderRadius: rs(16),
+      padding: rs(14),
+      marginBottom: rs(14),
+    },
 
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
 
-  foodImage: {
-    width: 64,
-    height: 64,
-    borderRadius: 12,
-    marginRight: 12,
-  },
+    foodImage: {
+      width: rs(70),
+      height: rs(70),
+      borderRadius: rs(12),
+      marginRight: rs(12),
+    },
 
-  title: {
-    fontSize: 15,
-    fontFamily: getFontFamily('SemiBold'),
-    color: '#111827',
-  },
+    title: {
+      fontSize: rs(15),
+      fontFamily: getFontFamily('SemiBold'),
+      color: colors.text,
+    },
 
-  subText: {
-    fontSize: 12,
-    color: '#6B7280',
-    marginTop: 2,
-  },
+    subText: {
+      fontSize: rs(12),
+      color: colors.inactive,
+      marginTop: rs(2),
 
-  orderId: {
-    fontSize: 12,
-    color: '#9CA3AF',
-    marginTop: 2,
-  },
+    },
 
-  items: {
-    fontSize: 12,
-    color: '#6B7280',
-  },
+    orderId: {
+      fontSize: rs(12),
+      color: colors.primary,
+      marginTop: rs(2),
+    },
 
-  price: {
-    fontSize: 14,
-    fontFamily: getFontFamily('SemiBold'),
-  },
+    items: {
+      fontSize: rs(12),
+      color: colors.inactive,
+    },
 
-  sectionTitle: {
-    fontSize: 14,
-    fontFamily: getFontFamily('SemiBold'),
-    marginBottom: 10,
-  },
+    price: {
+      fontSize: rs(14),
+      fontFamily: getFontFamily('SemiBold'),
+      color: colors.text,
+    },
 
-  billRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 6,
-  },
+    sectionTitle: {
+      fontSize: rs(14),
+      fontFamily: getFontFamily('SemiBold'),
+      marginBottom: rs(20),
+      color: colors.text,
+    },
 
-  billLabel: {
-    fontSize: 13,
-    color: '#6B7280',
-  },
+    billRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: rs(20),
+    },
 
-  billValue: {
-    fontSize: 13,
-    fontFamily: getFontFamily('Medium'),
-  },
+    billLabel: {
+      fontSize: rs(14),
+      color: colors.subText,
+    },
 
-  invoiceBtn: {
-    backgroundColor: COLORS.primary,
-    paddingVertical: 14,
-    borderRadius: 14,
-    alignItems: 'center',
-    marginBottom: 30,
-  },
+    billValue: {
+      fontSize: rs(14),
+      fontFamily: getFontFamily('Medium'),
+      color: colors.text,
+    },
 
-  invoiceText: {
-    color: '#FFF',
-    fontFamily: getFontFamily('SemiBold'),
-  },
-});
+    invoiceBtn: {
+      backgroundColor: colors.primary,
+      paddingVertical: rs(14),
+      borderRadius: rs(14),
+      alignItems: 'center',
+      marginVertical: rs(24),
+    },
+
+    invoiceText: {
+      color: COLORS.secondary,
+      fontSize: rs(14),
+      fontFamily: getFontFamily('SemiBold'),
+    },
+  });
